@@ -1,4 +1,4 @@
-%% simple resolution for Cijs
+%% resolution for Cijs
 
 function res = resFunc(parSET)
 
@@ -418,7 +418,7 @@ for SVDthresh = SVDthreshArr
     if strcmp(WT,'PSV') || strcmp(WT,'PSV')
         nParResAnglePS(TsensAll.(WT),SVDthresh,parSET);
     elseif strcmp(WT,'SVSV') || strcmp(WT,'SVSH') || strcmp(WT,'SHSH')
-        blablbllbljkl = 100000000
+        disp('Angular resolution for incident S waves is not yet implemented');
     elseif strcmp(WT,'PP')
         nParResAngle(TsensAll.(WT),SVDthresh,parSET);
     end;
