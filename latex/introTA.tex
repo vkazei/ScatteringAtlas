@@ -1,0 +1,105 @@
+\section{Introduction}
+% what is the problem?
+% The problem is that anisotropic parameters are coupled
+%\subsection{Anisotropy in the earth}
+A realistic representation of propagating wavefields is key to creating accurate subsurface 
+models in global and exploration seismology.
+%
+Elastic anisotropy, which can be classified and decomposed based upon the symmetries present in the anisotropic media \citep{browaeys2004,bona2007}, strongly influences the propagation of wavefields throughout the earth's interior.
+%
+In global seismology, inversions of the anisotropy of the inner core 
+\citep{tromp1993support,creager1999large} and some regions of the earth's 
+mantle \citep[e.g.,][]{long2010mantle,bozdag2016} have been used to construct more realistic 
+global models for a better understanding of the physics of the earth. However, it is difficult to predict the optimal constraints, regularizations, and parameterizations to apply when designing elastic anisotropic inversions.
+
+Tradeoffs are another major challenge encountered when inverting the anisotropic elastic 
+properties of the earth's subsurface. Tradeoffs, also called couplings, between anisotropic parameters occur when different combinations of parameter perturbations lead to almost identical scattering patterns, i.e., the different perturbations produce the same elastic wave recordings. The problem of parameter tradeoffs is not new and has been  
+extensively studied in isotropic media 
+\citep{wu1985,tarantola1986,virieux2009,kohn2012,anikiev2014m,vegard2017}, vertical transversally isotropic (VTI) media \citep{eaton1994,gholami20131,alkhalifah2014,plessix2016}, and 
+orthorhombic media \citep{hoop1999,shaw2004,juwon2016,kazei2017}. %\cite{} 
+\cite{kohn2015} performed a synthetic feasibility investigation on FWI for all triclinic elastic parameters, excluding density from the inversion.  
+In this paper, we address the tradeoffs that inevitably arise in general elastic anisotropic inversions by explicitly defining those combinations that lead to similar recordings.
+%
+%\subsection{Common types of anisotropy}
+
+Here, we consider the four most common cases of seismic anisotropy: VTI, orthorhombic (orthotropic), monoclinic, and triclinic anisotropy. VTI anisotropy is naturally induced in the subsurface by gravity-related vertical stress \citep{thomsen1986} and thin layering. 
+%Transversally isotropic anisotropy with arbitrary orientations, e.g., horizontal transversally isotropic(HTI) and tilted transversally isotropic(TTI), is the common limitation of most modern studies.
+Orthorhombic anisotropy characterizes most fractured carbonate reservoirs \citep{schoenberg1997,tsvankin1997} and, therefore, plays a dominant role in exploration seismology. Orthorhombic anisotropy is also found in olivine crystals \citep{durham1977}, which comprise a significant part of the earth's mantle and deeper crust \citep[e.g.][]{tommasi2009}. Even the kinematics of wave propagation in orthorhombic media are rather complicated and the subject of much current research \citep{stovas2015,stovas2017,ivanov2016,xu2018}. Monoclinic anisotropy is sometimes found in more complex geological formations or multiple sets of fractures \citep{grechka2000}. A triclinic anisotropic medium, the most common in the earth, has no planes of symmetry. Any elastic solid can be described by twenty-one elastic constants and density -- triclinic anisotropic media require all twenty-two of these parameters for a complete description. Unfortunately, independent inversion for all twenty-two parameters is still a big challenge \citep{kohn2015} due to various tradeoffs. Here we try to understand which parameters are principally recoverable from different types of scattering and at which resolution.
+
+The paper is organized as follows. 
+In Section 2, we provide the history and general properties of scattering functions and the diffraction, reflection, and transmission of scattering radiation patterns. In Section 3, we introduce spectral sensitivities in order to directly access the vertical resolution lengths in inversion. In Section 4, we provide an atlas of these sensitivities for all possible parameter perturbations and all scattering modes. We also reveal the null-spaces for each scattering mode and verify those null-spaces analytically using a numerical singular value decomposition (SVD) analysis. In Section 5, we summarize the tradeoffs in two tables and show how three-component data can be utilized to determine all the orthorhombic parameters based on null-space intersections.
+
+\twplot{orthoReservoir}{CijMap}{Orthorhombic reservoir. a) Anisotropic fractured reservoir in isotropic background. b) Elements of stiffness matrix in Voigt notation. Only red and blue cells are non-zero for monoclinic media with horizontal ($x_1$ - $x_2$) plane of symmetry. In orthorhombic media only red parameters are non-zero (if the symmetry planes are $x_1-x_2, x_1-x_3, x_2-x_3$).}
+
+
+
+
+
+
+
+
+
+%is the ultimate goal of elastic 
+
+%If there are no planes of symmetry for the elastic solid triclinic anisotropy is the most general kind of anisotropy found in the earth. %For this reason, it is the ultimate destination of inversion methods not reached by FWI yet \citep{kohn2015}. 
+%Triclinic
+%\subsection{Null-space, coupling and tradeoff in multiparameter inversion}
+%
+
+
+ 
+
+
+
+%what do we add?
+%\subsection{What is missing?}
+%Some modern seismic exploration surveys include full azimuth coverage, extended bandwidth and multi-component measurements, have the potential to improve quality and quantity of the resolvable information and allow for lower symmetry anisotropy types to be considered for inversion. Similar situations occur in regional and global seismology when dense networks such as US Array \citep{gao2006upper,zhu2017} and additional sensors are placed into the ocean \citep{simons2009potential,sukhovich2015seismic}.
+%%
+
+
+%Relying on spectral analysis, we try to answer a simple question for general 
+%anisotropic media, with more details for isotropic, VTI and orthorhombic cases: 
+%What kind of anisotropy would we be able to invert just from particular 
+%scattered wave modes or at least how many constraints do we need to make 
+%the inversion meaningful?
+%
+% e first provide a fundamental analysis based on the case in which we have perfect illumination.
+
+
+%
+
+%\subsection{Outline}
+
+
+
+
+
+%
+
+
+%scattering radiation patterns in order to answer these questions and 
+%in the end of the paper provide a table describing fundamentally irresolvable 
+%tradeoffs between parameters. These tradeoffs need to be eliminated by 
+%constraints during an anisotropic inversion process.
+
+%The most well-known reductions of the function, characterized by four angles, 
+%are the diffraction scattering pattern, the reflection scattering pattern, and 
+%the transmission scattering pattern.  
+%Non-scattering linear combinations of radiation patterns represent couplings 
+%of 
+%parameters that are fundamentally irresolvable.
+
+
+
+
+%
+
+
+
+
+% 
+%for spectral domain
+%\cite{wu:11} mapped scattering into the spectral domain \cite{mora1989} mapped 
+%the 
+%\cite{kazei2013gp,kazei2013spectral} found the parts of the patterns 
+%activated by head and diving waves.

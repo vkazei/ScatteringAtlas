@@ -1,0 +1,90 @@
+\section{Non-scattering combinations}
+
+\subsection{Non-scattering combinations for SH waves}
+
+Namely, by writing down Snell's law for propagation directions,
+\beq \label{eq:Snell_PP}
+\nonumber
+s_1 = -g_1 = \cos\theta \cos\phi \\ 
+s_2 = -g_2 = \cos\theta \sin\phi \\ \nonumber
+s_3 = g_3 = \sin\theta, 
+\eeq
+and $SH$ wave polarization,
+\beq \label{eq:Snell_SHSH}
+\nonumber
+s_{\phi_1} = -g_{\phi 1} = -\sin \phi \\
+s_{\phi 2} = -g_{\phi 2} = \cos \phi \\ \nonumber
+s_{\phi 3} = g_{\phi 3} = 0,
+\eeq
+we can easily obtain the radiation pattern for density as 
+\beq \label{eq:rhoSH}
+\Rp_{SH-SH,\rho} = \sv_\phi\cdot\gv_\phi = -1.
+\eeq
+Then, with a little more effort, we find the reflection-based radiation patterns for azimuthally independent scattering combinations of elastic constants as
+\beq
+\Rp_{\Cv_{44},SH-SH} = \Rp_{\cv_{3232},SH-SH} = -(s_3 s_{\phi 2})^2 = -\sin^2\theta \cos^2\phi, \\
+\Rp_{\Cv_{55},SH-SH} = \Rp_{\cv_{3131},SH-SH} = -(s_3 s_{\phi 1})^2 = -\sin^2\theta \sin^2\phi.
+\eeq
+Therefore,
+\beq
+\Rp_{\Cv_{44}+\Cv_{55},SH-SH} = -\sin^2\theta.
+\eeq
+Analogously,
+\beq
+\Rp_{\Cv_{12},SH-SH} = \Rp_{\cv_{1122},SH-SH} = 2(s_1 s_{\phi 1})(s_2 s_{\phi 2}) 
+= \\
+-2 \cos^2\theta \cos^2\phi \sin^2\phi =
+%
+- \frac{1}{2} \cos^2\theta \sin^2 2\phi
+ \\
+ \\
+\Rp_{\Cv_{66},SH-SH} = \Rp_{\cv_{1212},SH-SH} = (s_1 s_{\phi 2})^2 + (s_2 s_{\phi 1})^2 +
+2 s_1 s_2 s_{\phi_1} s_{\phi_2} 
+=\\ \cos^2\theta (\cos^2\phi-\sin^2\phi)^2
+=
+\cos^2\theta \cos^2 2\phi
+\eeq
+and, hence,
+\beq
+\Rp_{\Cv_{12}+\Cv_{66},SH-SH} = \cos^2\theta.
+\eeq
+Finally, we can construct combination that scatters just like density: 
+\beq
+\Rp_{\Cv_{44}+\Cv_{55} - \Cv_{12} - \Cv_{66},SH-SH} = -1.
+\eeq
+
+\subsection{SV-SV waves}
+
+We combine Snell's law for propagation directions \eqref{eq:Snell_PP} and its form for $SV$ polarization directions $\sv_\theta$ and $\gv_\theta$,
+\beq
+\nonumber
+s_{\theta 1} = -g_{\theta 1} = -\sin\theta \cos\phi \\ 
+s_{\theta 2} = -g_{\theta 2} = -\sin\theta \sin \phi \\ \nonumber
+s_{\theta 3} = g_{\theta 3} = \cos\theta,
+\eeq
+with the partial derivative $\pd{\Cv}{\mv}$ expression for the new parameterization \eqref{eq:Jaco} to derive the reflection-based radiation patterns for $\eps_d$:
+\beq
+\Rp_{SV-SV,\eps_d} = \Rp_{SV-SV,2\Cv_{22}+\Cv_{23}} =
+%
+2(s_2 s_{\theta_2})^2 + 2(s_2 s_{\theta_2})(g_3 g_{\theta_3}) = \\
+%
+2(\cos\theta \sin\phi  \sin\theta \sin \phi)^2 - 2(\cos\theta \sin\phi \sin \theta \sin\phi \sin\theta \cos \theta) = \\
+%
+\frac{1}{2} (\sin^2 2\theta \sin^4 \phi - \sin^2 2\theta \sin^2 \phi) =\\
+%
+\frac{1}{2} \sin^2 2\theta \sin^2 \phi (\sin^2 \phi-1) = \\
+%
+-\frac{1}{8}\sin^2 2\theta \sin^2 2\phi;
+\eeq
+and $\delta_3$:
+\beq
+\Rp_{SV-SV,\delta_3} = \Rp_{SV-SV,\Cv_{12}} =
+%
+2(s_1 s_{\theta_1})(g_2 g_{\theta_2}) = \\
+%
+2(\cos\theta \cos\phi \sin\theta \cos\phi \cos\theta \sin\phi \sin\theta \sin \phi) = \\
+%
+2\cos^2\theta \sin^2\theta \cos^2\phi \sin^2 \phi = \\
+%
+\frac{1}{8}\sin^2 2\theta \sin^2 2\phi.
+\eeq

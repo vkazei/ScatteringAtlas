@@ -1,0 +1,25 @@
+\subsection{$SV-SH$ scattering}
+
+This component is important in global inversions of scattering. The formula governing $SV-SH$ scattering is given by
+\beq \label{eq:USVSVInt}
+\delta U_{SVSH} \equiv   
+\frac{1}{\varkappa^3}\intyV  e^{i\Kv_{SS}\cdot\xv} (\sv_\theta \cdot \gv_\phi \delta \rho + \sv\sv_\theta : \delta \cv :\gv\gv_{\phi}) \d \xv. 
+\eeq
+
+$SV-SH$ scattering, like $P-SH$ scattering, cannot happen on VTI parameters since there is no preferred direction for the scattered $SH$ wave polarization. When the perturbation is anisotropic, however, $SV-SH$ and $P-SH$ scattering become possible. These types of scattering, if they happen, are clear indicators of azimuthal anisotropy. An additional tradeoff in this case is the coupling of $\epsilon_d$ and $\delta_3$ (\figref{SHSH/SHSHnPar0}). We derive the exact relation between patterns of $\epsilon_d$ and $\delta_3$:
+
+\ddplot{SVSH/SVSHCij}{SVSH/SVSHnPar0}{Same as \figref{PP_Full/PPCij_Full}, but for $SV-SH$ scattering, which is sensitive to all the $C_{ij}$ parameters except $C_{33}$.}
+
+\tplot{SVSH/TotalSingVal}{SVSH/TotalSingVec1}{SVSH/TotalSingVec0}{Same as \figref{PP_Full/TotalSingVal_Full}, but for $SV-SH$ scattering.}
+
+\beq
+\Rp_{SV-SH,\eps_d} = \Rp_{SV-SH,2\Cv_{22}+\Cv_{23}} =
+%
+s_2 s_{\theta 2} g_2 g_{\phi 2} + s_2 s_{\theta 2}  g_3 g_{\phi 3} + s_3 s_{\theta 3} g_2 g_{\phi 2}  = \\
+%
+s_2 s_{\theta 2} g_2 g_{\phi 2} + s_3 s_{\theta 3} g_2 g_{\phi 2}  =  (s_2 s_{\theta 2}  + s_3 s_{\theta 3}) g_2 g_{\phi 2} = \\
+%
+(\sv \cdot \sv_\theta - s_1 s_{\theta 1}) g_2 g_{\phi 2} = - s_1 s_{\theta 1} g_2 g_{\phi 2} = 
+%
+- \frac{1}{2}\Rp_{SV-SH,2\Cv_{12}} = - \frac{1}{2} \Rp_{SV-SH,\delta_3}.
+\eeq

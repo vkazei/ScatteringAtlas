@@ -1,0 +1,27 @@
+\subsection{Scattering function}
+A monochromatic plane wave is defined by its phase, polarization, and 
+propagation directions. The phase accumulated while traveling through 
+a background medium is dropped in our analysis so that we can focus on the local scattering 
+features. Therefore, here the scattered wavefield $\delta 
+\Uv$ depends only on the incident plane-wave slowness vector $\sv$, the scattered plane-wave slowness vector $\gv$, the respective 
+polarizations $\spv$ and $\gpv$, the frequency $\omega$, and the 
+perturbation of the parameters 
+$\delta \mv  = (\delta \rho(\xv), \delta \cv(\xv))^T$:
+\beq
+\delta \Uv \cdot \gpv  \propto \SF_{\delta \mv} (\sv,\gv, \spv, \gpv).
+\eeq
+%
+The coefficient $\SF$, well known for its arbitrary point scatterers, is called the scattering function \citep{eaton1994, shaw2004, 
+calvet2006, kazei2018}, and is defined as 
+%
+\beq \label{eq:sfun}
+\SF_{\delta \mv} (\sv,\gv, \spv, \gpv) \equiv \sp_k \gp_k \delta \rho  + 
+s_i \sp_j \delta c_{ijkl} g_k \gp_l 
+\\
+= \spv \cdot \gpv \delta \rho + \sv \tmul \spv : \delta \cv : \gv \tmul \gpv.
+\eeq
+While $\SF$ is \emph{independent} of the background medium, which can have up to triclinic-anisotropy complexity, eight 
+different angles determine the directions of polarization and propagation for its incident and scattered wavefield (there are four directions, featuring two angles each). 
+Thus, there are many possibilities for polarization and propagation relations in a general anisotropic background as well as for velocities of incident and scattered waves; here, we consider scattering in an isotropic background.
+ 
+%Instead of expressions including angles we try to stick with vector notation to keep it more compact.

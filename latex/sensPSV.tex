@@ -1,0 +1,14 @@
+\subsection{$P-SV$ scattering}
+%
+$P-SV$ scattering is important in multi-component acquisition (e.g., ocean-bottom cables or nodes) and has proven useful in imaging and inversion near gas clouds \citep{brossier2009,prieux2013}.
+$P-SV$ scattering in the wavenumber domain is governed by the formula
+\beq
+\delta U_{PSV}(\sv,\gv,\omega) = \frac{1}{\varkappa^3}(\sv\cdot\gv_{\theta} \delta \hat{\rho}(\Kv_{PS}) + \sv\sv : \delta \hat{\cv}(\Kv_{PS}) :\gv\gv_{\theta}).
+\eeq
+Among the orthorhombic parameters of $P-SV$ scattered waves, we observe that $C_{12}$ is coupled to $C_{66}$ (Fig. 14(a)), which results in no scattering by $\gamma_1$ in the hierarchical parameterization. At the same time, $V_p$ presents a non-scattering combination in the hierarchical parameterization. We also observe that all the parameters in the $C_{ij}$ parameterization are scattered, that $C_{14}$ is coupled to $C_{56}$, and that $C_{25}$ is coupled to $C_{46}$. SVD shows that there is no scattering on $V_p$ or $\gamma_1$ (Fig. 15(c)). 
+%Interestingly the parameter $C_{ij}$ perturbations are not orthogonal and therefore in \figref{PSV/TotalSingVec1} you can see that $V_p=\Cv$ is orthogonalized to the the $\gamma_1$ parameter.
+
+\ddplot{PSV/PSVCij}{PSV/PSVnPar0}{Same as \figref{PP_Full/PPCij}, but for $P-SV$ scattering.}
+\tplot{PSV/TotalSingVal}{PSV/TotalSingVec1}{PSV/TotalSingVec0}{Same as \figref{PP_Full/TotalSingVal_Full}, but for $P-SV$ scattering.}
+%
+$P-SV$ waves show non-zero sensitivity for all the $C_{ij}$ parameters, but have zero sensitivity to low wavenumbers \citep[e.g.,][]{podgornova}. However, they are key to inverting for tilted orthorhombic media (TORT).

@@ -1,0 +1,14 @@
+\subsection{$P-SH$ scattering}
+$P-SH$ scattering does not exist in VTI media or in slices of orthorhombic media aligned with the symmetry planes. Therefore, it can be used to find these symmetry planes in orthorhombic inversion. We expect the deviation parameter $\delta_3$ to play an important role in the sensitivity matrix.
+$P-SH$ scattering is governed by the formula
+\beq
+\delta U_{PSH}(\sv,\gv,\omega) = \frac{1}{\varkappa^3}(\sv\cdot\gv_{\phi} \delta \hat{\rho}(\Kv_{PS}) + \sv\sv : \delta \hat{\cv}(\Kv_{PS}) :\gv\gv_{\phi}).
+\eeq
+$P-SH$ waves are sensitive to all the $C_{ij}$ parameters in a classic \cpar except $C_{33}$ and density. Therefore, it is almost impossible to distinguish coupling effects in the sensitivities shown in \figref{PSH/PSHCij}.
+
+$P-SH$ scattering does not happen for VTI parameters ($\rho,V_p,V_s,\epsilon_1,\eta_1,\gamma_1$) as there is no preferred direction of polarization for the scattered wave (\figref{PSH/PSHnPar0}). Therefore, if observed, $P-SH$ conversion clearly indicates a beyond-VTI anisotropy. As our SVD analysis suggests, if the VTI parameters are known, then the rest of the orthorhombic parameters can be reconstructed from the $P-SH$ scattering mode alone (\figref{PSH/TotalSingVal}).   
+
+
+\ddplot{PSH/PSHCij}{PSH/PSHnPar0}{Same as \figref{PP_Full/PPCij_Full}, but for P-SH waves. Hierarchical parameterization shows that this type of scattering does not happen in VTI media due to simple symmetry restrictions.} 
+
+\tplot{PSH/TotalSingVal}{PSH/TotalSingVec1}{PSH/TotalSingVec0}{Same as \figref{PP_Full/TotalSingVal_Full}, but for $P-SH$ scattering.}

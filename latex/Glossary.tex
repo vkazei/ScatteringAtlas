@@ -1,0 +1,98 @@
+\section*{Glossary}
+
+$\omega$ -- angular frequency;
+\\
+$\xv$ -- imaging point vector;
+\\
+$\xv_s, \xv_g$ -- source and geophone radius vectors, respectively;
+\\
+$\sv$ -- unit vector pointing towards the source along the source wavepath direction;
+\\
+$\gv$ -- same as $\sv$ but towards the geophone;
+\\
+$\sp$, $\gp$ -- polarization vectors for the incident and scattered waves respectively
+\\
+$G_{ik}(\xv,\xv') \equiv G_{ik}(\xv,\xv',\omega)$ -- Green's tensor in the background medium for frequency $\omega$;
+\\
+$\Kv$ -- wavenumber domain vector;
+\\
+$\uv(\xv_s,\xv_g)$ -- monochromatic displacement wavefield at frequency $\omega$;
+\\
+$c_{ijkl}, \cv$ -- stiffness tensor;
+\\
+$C_{ij}, \Cv$ -- stiffness matrix in Voigt notation; 
+\\
+\rmrk{HIERARCHICAL PARAMETERIZATION}
+\begin{align} \label{eq:jw}
+C_{11} &=\rho V^2_{p},
+\\
+C_{22} &=(1+2\eps_d)\rho V^2_{p},
+\\
+C_{33} &= \frac{1}{1+2\eps_1} \rho V^2_{p},
+\\
+C_{12} &= \rho \sqrt{( V^2_{p}-(1+2\gamma_1) V^2_{s})}\\
+\times&\sqrt{((1+2\delta_3)V^2_{p}-(1+2\gamma_1) V^2_{s})}\\
+- & (1+2\gamma_1 )\rho V^2_{s},
+\\
+C_{13} &= \rho \sqrt{(\frac{V^2_{p}}{1+2\eps_1}-V^2_{s})
+	(\frac{V^2_{p}}{1+2\eta_1}-V^2_{s})}
+\\
+-&\rho V^2_{s},
+\\
+C_{23} &= \rho [(\frac{V^2_{p}}{1+2\eps_1}(1+2\gamma_d)\v_s^2)
+\\
+\times & (\frac{V^2_{p}(1+\eps_d)}{(1+2\eta_1)(1+2\eta_d)}-(1+2\gamma_d)V^2_{s})]^{1/2} 
+\\
+-&(1+2\gamma_d)\rho V^2_{s},
+\\
+C_{44} &=(1+2\gamma_d)\rho V^2_{s},
+\\
+C_{55} &=\rho V^2_{s},
+\\
+C_{66} &=(1+2\gamma_1)\rho V^2_{s}.
+\end{align}
+\\
+$\rho, \lambda$ -- density and first lamé parameter;
+\\
+$\delta f$ -- variational perturbation of a function $f$;
+\\
+$\hat{f}$ -- Fourier transform of a function $f$;
+\\
+$\sdot$ -- incident and scattered wave types and the perturbation parameter type  $\sdot = \text{P-P}, \lambda$ or $\sdot = \text{P-SH}, C_{13}$;
+\\
+$\Rp_\sdot(\sv,\gv)$ -- radiation pattern for plane waves and parameter perturbation of type $\sdot$;
+\\
+$(\sv \tmul \gv)_{ij} \equiv s_i g_j$ -- the outer (dyadic) product of tensors (vectors); 
+\\
+$:$ -- convolution of tensors on two indexes, e.g.,
+$\cv:\sv\gv \equiv c_{ijkl}s_kg_l.$;
+\\
+Einstein summation is assumed throughout the paper.
+\\
+We choose the Fourier convention following \cite{hudson1981}:
+\beq 
+u(t) = \inty \exp(-i\omega t) U(\omega) \d \omega,~ \hat{U}(\Kv) = \intyV \exp(-i\Kv\xv) U (\xv) \d \xv.
+\eeq
+Natural units convention and equivalent normalization: 
+\\ 
+scattering should depend only on geometric properties of the elasticity tensor, therefore we can normalize everything by $C_{11}$ in the background, applying the same to the density of the background. The latter is equivalent to the following assumptions:
+$\v_p = 1, ~ \rho = 1$.
+Slownesses are made dimensionless by multiplying by $\v_{0p}$:
+\beq
+\svn = \v_{0p} * \sv,
+\eeq
+densities are normalized by $\rho_0$
+\beq
+\nmz{\rho} = \frac{\rho}{\rho_0},
+\eeq
+therefore elastic constants $C_{ij}$ and components of elastic tensor $c_{ijkl}$ are normalized by $\rho_0 \v^2_{0p}$.
+$\v_{0p}$ is the P wave velocity in the background media throughout the paper.
+
+
+ 
+
+
+
+
+
+

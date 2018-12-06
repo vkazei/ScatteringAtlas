@@ -1,0 +1,34 @@
+\subsection{$SH-SH$ scattering}
+%
+Shear-wave scattering at the core-mantle boundary revealed significant anisotropy  \citep{fukao1984,silver1991,babuska1991,vinnik1992}. More recently, the existence of a beyond-VTI anisotropy was reconfirmed \citep{wookey2005}. Horizontally polarized shear waves and their superpositions propagating as Love waves had a significant impact on recent near-surface inversions \citep{pan2015,dokter2017}. Typically, inversions focus on the velocity of $SH$ waves along the horizontal axis, below we investigate which tradeoffs are irresolvable in inversions of this particular mode.
+%
+The scattering of $SH$ waves in the wavenumber domain is governed by the equation
+\beq \label{eq:USHSH}
+\delta U_{SHSH} \equiv   
+%\intyV  e^{i\Kv_{SS}\cdot\xv} (\sv_\phi \cdot \gv_\phi \delta \rho + \sv\sv_\phi : \delta \cv :\gv\gv_{\phi}) \d \xv  =  \\ 
+\sv_\phi \cdot \gv_\phi \delta \hat{\rho}(\Kv_{SS}) + 
+%
+\sv\sv_\phi : \delta \hat{\cv}(\Kv_{SS}) :\gv\gv_{\phi}.
+\eeq 
+The polarization of $SH$ waves is horizontal; therefore, $\sv_{\phi 3} = \gv_{\phi 3} = 0$, which leads to zero sensitivity to  the $C_{13}, C_{23}$, and $C_{33}$ parameters of $SH$ scattering (\figref{SHSH/SHSHCij}). Also, $\eps_1$, $\eta_1$, and $\eta_d$ span the same linear space as the $C_{13}, C_{23}$, and $C_{33}$ parameters, and all show zero sensitivity (\figref{SHSH/SHSHnPar0}). 
+The central parameter of $SH$ wave inversions is the horizontal shear velocity ($V_s$ in the new parameterization), with $\gamma_1$ being responsible for the anisotropy between vertical and horizontal wave propagation. However, the scattering panels \figref{SHSH/SHSHnPar0} show that $V_s$ is strongly coupled with density in a dynamic inversion.
+
+Neither $V_p$ nor the equivalent $\lambda$ perturbation of the parameters scatter $SH$ waves \citep{wu1985}. Density shows a constant scattering amplitude according to \eqrf{USHSH}, which is coupled to a combination of $C_{11},C_{44},C_{55}$, and $C_{66}$.
+
+
+
+
+In the new parameterization, the non-scattering perturbation
+\beq \label{eq:rhoSH2}
+\rhov - 2\Cv_{12} + \Cv_{66} - \Cv_{44} - \Cv_{55} 
+\eeq
+is equivalent to
+\beq \label{eq:rhoSH3}
+2\varkappa \rhov - (1+\varkappa) \Vv_s + 2\gammav_1,
+\eeq
+according to the partial derivative matrix $\pd{\Cv}{\mv}$.
+Equations~(\ref{eq:rhoSH2},\ref{eq:rhoSH3}) finalize the null-space of the inversion using $SH-SH$ waves.
+
+\ddplot{SHSH/SHSHCij}{SHSH/SHSHnPar0}{Same as \figref{PP_Full/PPCij_PP_Full/PPnPar0}, but for $SH-SH$ scattering. $SH$ scattering is only sensitive to monoclinic parameters, and, thus, is non-sensitive to the perturbations of $C_{.3}$ parameters, $V_p$, $\epsilon_1$, $\eta_1$, and $\eta_d$. $C_{11}$ is coupled to both $C_{22}$ and $C_{12}$. $C_{16}$ is coupled to $C_{26}$.}
+
+\tplot{SHSH/TotalSingVal}{SHSH/TotalSingVec1}{SHSH/TotalSingVec0}{Same as \figref{PP_Full/TotalSingVal_PP_Full/TotalSingVec0} but for $SH-SH$ scattering}

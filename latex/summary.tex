@@ -1,0 +1,50 @@
+\begin{abstract}
+%Multiparameter full-waveform inversion is one of the most modern and widespread fields of study in modern geophysics. 
+%
+%Elastic anisotropic assumption is one of the most relevant physics for wavefield modeling and inversion.
+%
+Full-waveform inversion (FWI) optimizes the subsurface properties of geophysical earth models in such a way that the modeled data, based on these subsurface properties, match the observed data. The anisotropic properties, whether monoclinic, orthorhombic, triclinic, or vertical transversally isotropic (VTI), of the subsurface, be it a fractured reservoir or the core-mantle boundary, are necessary to describe the observed wave phenomena. In principle, there are no limitations on the complexity of the anisotropy that can be inverted using FWI. However, the question remains - what kind of anisotropic descriptions of the elastic properties of the earth can or cannot be inverted reliably from full seismic waveforms? We reveal the resolution that can be achieved through reconstructions of each elastic parameter by building vertical resolution patterns from the scattering radiation patterns. A visual analysis of these patterns indicates "tradeoffs", i.e., perturbations of parameters that have the same reflection-based scattering patterns as other perturbations. Each tradeoff leads to an apparent ambiguity in the inversion results, which must be addressed by additional assumptions, constraints, or regularizations. For orthorhombic media, we find the exact tradeoffs that exist between parameters. Our parameterization isolates the VTI parameters and, therefore, we also obtain the null-space of every scattering mode for VTI media. We also discover that only monoclinic parameters are recoverable from the first order scattering of monotypic waves. We summarize the tradeoffs found in tables for easy reference. This paper is intended to be useful for researchers setting up anisotropic FWI problems and quality control of such inversions.
+\end{abstract}
+
+%least how many model constraints do we need to make the inversion meaningful?
+%The answer is important in both exploration and global seismology as 
+%it guides us to what we can invert for and at what resolution.
+%
+%Let us consider a simple experiment: a small anisotropic scatterer illuminated from all sides by certain wave mode(s). 
+
+%We don't know the scatterer properties 
+%distribution, just assume that it's small enough to fit into the Born 
+%scattering assumption. We try to answer a simple question:
+%%
+%%what do we primarily propose as a solution?
+%%
+%We employ scattering radiation patterns in order to attain such information 
+%When the scatterer is a point with respect to the dominant wavelength, the scattered energy is described by
+%diffraction-based radiation patterns. Otherwise, if the 
+%shape of the scatterer is not restricted, reflection-based radiation patterns 
+%can be remapped into the spectral domain and used for the parameter 
+%reconstruction. Thus, we provide a table describing 
+%fundamentally irresolvable tradeoffs between parameters in weakly anisotropic 
+%media. The resolution and accuracy depends on the noise level. 
+%So in a singular value decomposition analysis linear parameter combinations with values that fall below the noise level cannot be properly inverted for.
+%
+%We show that if there is no tilt in the background vertical variations of it are not recoverable.
+
+%As a result, such tradeoffs can be mitigated through appropriate 
+%constraints during an anisotropic inversion process and present an estimate of 
+%the number of distributed parameters recoverable in single mode inversions for 
+%orthorhombic anisotropic media. We develop multiparameter inversion resolution analysis 
+%and in particular design better parameterizations and regularizations for such 
+%inversions.
+
+
+%Reflection-based radiation patterns are remapped into the normalized 
+%wavenumber domain to access resolvability of anisotropic elastic parameters at 
+%different scales. Particularly we focus on scattering by orthorhombic 
+%parameters, which represent upscaled carbonate reservoir geology most accurate 
+%and dominate over lower anisotropies in the Earth's crust. We utilize singular 
+%value analysis of the spectral sensitivities to reveal numerical null-spaces 
+%for data of only certain wave modes and some of their practical combinations. 
+%Three component measurements of explosive source scattered waves theoretically 
+%allow to decouple all ten orthorhombic parameters. Density is included, unlike 
+%in some previous studies on elastic scattering. 

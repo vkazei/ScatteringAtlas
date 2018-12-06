@@ -1,0 +1,32 @@
+\subsection{Reflection-based radiation patterns -- $\Rp$}
+Classic \dP describe diffractions from point scatterers. However, seismic 
+surveys are commonly dominated by reflections (\figref{orthoReservoir}). Therefore, linearized reflection coefficients 
+\citep[e.g.,][]{ruger1997} and, more recently, reflection-based radiation patterns 
+\citep{shaw2004,gholami20131,alkhalifah2014} were developed. A given wave-mode relation 
+between the reflection-based radiation patterns and the reflection coefficients can be reduced to a scattering angle-dependent coefficient, which is independent of the scatterer 
+type \citep{shaw2004}.
+%
+In 3D scattering experiments, scattering functions depend on four scalar 
+parameters, which are defined by unit vectors $\sv$ and $\gv$. For a plane reflector, 
+the scattered wave direction is determined by the incident direction through Snell's law, and vice 
+versa. Similarly, the dip and azimuth of the reflector determine how 
+vector $\sv$ is tied to vector $\gv$ through Snell's law, reducing 
+the number of real variables that determine scattering from four to two:
+%
+\beq \label{eq:reflPat}
+\Rp_{WI-WS, \delta \mv}(\gv) \equiv \Dp_{WI-WS, \delta \mv}(\sv(\gv),\gv). 
+\eeq
+%
+The amplitude of the reflections from perturbations of isotropic parameters does 
+not depend on the reflector orientation; therefore, the reflection-based 
+radiation patterns are the same for all reflector orientations. For anisotropic 
+reflectors and backgrounds, the reflection-based radiation patterns depend on 
+the dip and azimuth angles. In most seismic cases, the medium is dominated by 
+horizontal layering. For this reason, we follow the example of \cite{gholami20131} and \cite{alkhalifah2014}, and focus on scattering from horizontal reflectors. We illustrate typical reflection-based radiation patterns for $C_{ij}$ parameters in \figref{patterns/C_55/PP_reflZ_Full}.
+
+ 
+
+\fplot{patterns/C_55/PP_reflZ}{patterns/C_13/PP_reflZ}{patterns/C_16/PP_reflZ}{patterns/C_36/PP_reflZ}{Reflection-based radiation patterns for $P-P$ scattering and $C_{55}$ -- (a), $C_{13}$ -- (b), $C_{16}$ -- (c), $C_{36}$ --(d). Just by looking at the radiation patterns we can state that $C_{13}$ and $C_{55}$ can not be determined together at high precision as they scatter in a very similar if not identical way.}
+
+
+

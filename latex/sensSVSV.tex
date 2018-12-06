@@ -1,0 +1,34 @@
+\subsection{$SV-SV$ scattering}
+The $SV-SV$ scattering mode is heavily utilized in global seismology in order to infer the anisotropy of the earth's deeper structures. In particular, diffracted $SV$ waves observed in the $SH$ shadow zone led to the discovery of possible anisotropy at the core-mantle boundary \citep{vinnik1989,babuska1991,vinnik1995}.
+%Vinnik
+%et al. (1989b) have suggested that DOl might be azimuthally anisotropic in order to
+%explain abnormally too large diffracted Sv waves observed in the SH shadow zone of the
+%core at epicentral distances between 107° and 117° (e.g. Fig. 6-15)
+
+%In defines the resolution gained from
+%surface waves, which are predominantly effected by the shear component (references)\rmrk{VT: I didn't edit this sentence - I think it's incomplete. Look at subject - verb agreement, and add refs}. $SV$ body waves also play an important role in the inversion of the lower mantle\rmrk{VT: references?}.
+The scattering of an $SV$ wave from an incident $SV$ wave under the Born approximation is represented by the following formula:
+\beq \label{eq:USVSV}
+\delta U_{SVSV} \equiv   
+%\frac{1}{\varkappa^3}\intyV  e^{i\Kv_{SS}\cdot\xv} (\sv_\theta \cdot \gv_\theta \delta \rho + \sv\sv_\theta : \delta \cv :\gv\gv_\theta) \d \xv  =  \\ 
+\frac{1}{\varkappa^3} \sv_\theta \cdot \gv_\phi \delta \hat{\rho}(\Kv_{SS}) + 
+%
+\sv\sv_\phi : \delta \hat{\cv}(\Kv_{SS}) :\gv\gv_{\phi}.
+\eeq 
+Just like $P-P$ waves, $SV-SV$ waves are only sensitive to monoclinic parameters 
+(\figref{SVSV/SVSVCij}). In the hierarchical parameterization, $V_p$, $\gamma_1$, and $\epsilon_1$ do not scatter these types of waves. Scattering by density ($\rho$) resembles $V_s$, and scattering by anomalies in $\epsilon_d$ resemble $\delta_3$.
+
+
+\ddplot{SVSV/SVSVCij}{SVSV/SVSVnPar0}{Same as \figref{PP_Full/PPCij_Full}, but for $SV-SV$ scattering.  Throughout the paper, the Poisson ratio is assumed to be 0.25.}
+%
+
+There are six non-zero singular values in this case (\figref{SVSV/TotalSingVal_Full}); therefore, only six parameters can be inverted from the $SV-SV$ scattered waves. Density is not completely coupled to some parameters and can be recovered, as it is not present in the set of zero singular vectors (7-10) that span the null-space of inversion. In the hierarchical parameterization, the density strongly resembles $V_s$. 
+Since $\Rp_{SV-SV,\delta_3} = -\Rp_{SV-SV,\eps_d}$,
+the sum of $\eps_d$ and $\delta_3$ does not scatter in the reflection mode
+$\Rp_{SV-SV,\eps_d+\delta_3}\equiv 0$.
+
+
+\tplot{SVSV/TotalSingVal}{SVSV/TotalSingVec1}{SVSV/TotalSingVec0}{Same as \figref{PP_Full/TotalSingVal_Full}, but for $SV-SV$ scattering.}
+
+%\paragraph*{Rayleigh waves}
+%Rayleigh waves are commonly associated with $S$-wave velocity and, therefore, can be linked to $SV-SV$ type of scattering. However, in the case of surface waves, the scattering function (also called an interaction matrix) is different \citep{snieder1986,snieder2002}. For this reason, we do not cover it in our analysis. Rather, recent advances in surface-wave inversions suggest that $P$-guided waves can be used in near-surface inversion for $P$-wave velocity \citep{socco2010,ponomarenko2017}.

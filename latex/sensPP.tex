@@ -1,0 +1,93 @@
+\subsection{$P-P$ scattering}
+%
+If registered, $P$ waves are the first waves that arrive at the receivers. Therefore, their travel times, or ``first breaks'', are the most common in seismic inversion setups.  The finite-frequency $P$-wave travel times are well represented by effective pseudo-acoustic 
+modeling \citep{alkhalifah2000,wu2017}, though correct inversion of the amplitudes requires elastic-media representation even in isotropic media  
+\citep{raknes2014,kurzmann2016}. In global seismology, the $P$ waves served as the main source of information about the core mantle and inner core--outer core boundaries for a long time \citep{bolt1970}. $P$ waves are still extensively exploited in inversions for the earth's inner core \citep{peng2008,yu2016,irving2015}, as well as for inversions of the mantle and crust. 
+In our previous work, we analyzed the scattering of $P$ wave--scattered data with respect to the inversion opportunities \citep{kazei2018}; therefore, here we cover the decoupling of parameters in the case of perfect illumination only.
+
+\ddplot{PP_Full/PPCij}{PP_Full/PPnPar0}{Spectral sensitivities to vertical 
+wavenumbers for $P-P$ scattering on various $C_{ij}$ perturbations. (a) 
+Sensitivity to all monoclinic parameters is non-zero when we start from isotropic 
+background. Yet, $C_{13}$ is very similar to $C_{55}$, $C_{12}$ to $C_{66}$, and 
+$C_{23}$ to $C_{44}$. High wavenumbers for density resemble those for 
+$C_{33}$. Scattering by $C_{45}$ is similar to that by $C_{35}$. (b) In the 
+hierarchical parameterization, $V_{s}$ is coupled to $\eta_1$, and $\eta_d$ is coupled to $\gamma_d$, finally, 
+$\rho$ is very similar to $\epsilon_1$. The Poisson ratio is assumed to be 0.25 
+($V_p/V_s = \sqrt{3}$).}
+%
+
+In \figref{PP_Full/PPCij} we see four non-orthorhombic elements that show non-zero 
+sensitivity. These non-zero sensitivities can potentially be used to invert for a monoclinic medium or an orthorhombic medium that is rotated around the vertical axis. On the other hand, the sensitivity to tilts -- rotations around horizontal axis -- is zero; therefore, inversion for tilts from monotypic waves will not work for purely 
+vertical wavenumbers.
+
+Through SVD of the $\Amat$ matrix, each row represents a particular 
+scattering experiment. Data at all angles in the radiation patterns are inverted 
+together.
+%
+The number of parameters that are invertible is equal to the number of non-zero 
+singular values in SVD.
+%
+The principal null-space is the span of singular vectors related to zero 
+singular values. 
+%
+The graph of the singular values \figref{PP_Full/TotalSingVal} tells us how the condition number of the 
+inverse problem decreases when we try to regularize inversion by reducing the 
+number of parameters to be inverted.
+
+We analyze the SVD of the full matrix $\Amat_{P-P}$ in the 
+$C_{ij},\rho$ parameterization. \figref{PP_Full/TotalSingVal} shows that the 
+matrix has only \emph{six} non-zero singular values and, thus, only \emph{six} 
+independent parameters are invertible in this case. 
+\figref{PP_Full/TotalSingVec1} shows the set of singular vectors in the 
+$C_{ij},\rho$ parameterization. The numerical null-space is defined as the linear span of 
+four singular vectors, corresponding to zero singular values (columns 7-10 in 
+\figref{PP_Full/TotalSingVec1}). 
+These vectors are
+\beq
+2\nmz{\Cv}_{12}-\nmz{\Cv}_{66}, \label{eq:C12C66}
+\\
+2\nmz{\Cv}_{13}+\nmz{\Cv}_{55},
+\\
+2\nmz{\Cv}_{23}+\nmz{\Cv}_{44},
+\\
+\nmz{\Cv}_{11}+\nmz{\Cv}_{12}+\nmz{\Cv}_{22}-\nmz{\Cv}_{33}+\nmz{\rhov}. 
+\eeq
+By substituting these combinations, which are found empirically, into the 
+reflection-based radiation pattern expressions, \cite{kazei2018} showed that the inversion is not at all sensitive to them. 
+For example
+\begin{align}
+\Rp_{2\nmz{\Cv}_{12}-\nmz{\Cv}_{66},P-P} \\ \nonumber
+&= \Rp_{2\cv_{1122}-\cv_{1212}-\cv_{2121}-\cv_{1221}-\cv_{2112},P-P}(\sv,\gv) \\ \nonumber
+&= 4 s_1s_1g_2g_2 - 4 s_1s_2g_1g_2 = 0.
+\end{align}
+%
+We also found \citep{kazei2018} a particular combination of the stiffness matrix elements and density that does not produce reflections. The reflection-based radiation pattern of density can be transformed as follows:
+\begin{align}
+\Rp_{\pmb{\rho},P-P} =& \sv\cdot\gv \\ \nonumber
+=& s_1g_1 + s_2g_2 + s_3g_3 \\ \nonumber
+=& -s_1s_1-s_2s_2+s_3s_3 \\ \nonumber
+=& -s_1s_1(s_1s_1+s_2s_2+s_3s_3) \\ \nonumber
+&- s_2s_2(s_1s_1+s_2s_2+s_3s_3) \\ \nonumber
+&+ s_3s_3(s_1s_1+s_2s_2+s_3s_3) \\ \nonumber
+=& \Rp_{-\nmz{\Cv}_{11}-\frac{1}{2}(\nmz{\Cv}_{12}-\nmz{\Cv}_{13}),P-P} \\ \nonumber
+&+ \Rp_{-\nmz{\Cv}_{22}-\frac{1}{2}(\nmz{\Cv}_{21}-\nmz{\Cv}_{23}),P-P} \\ \nonumber
+&+ \Rp_{\frac{1}{2}(\nmz{\Cv}_{31}+\nmz{\Cv}_{32})+\nmz{\Cv}_{33},P-P} \\ \nonumber
+=& \Rp_{-\nmz{\Cv}_{11}-\nmz{\Cv}_{12}-\nmz{\Cv}_{22}+\nmz{\Cv}_{33},P-P}.
+\end{align}
+Thus, density can be effectively represented by anisotropic parameters in the first order of scattering. Therefore, it is impossible to reconstruct density simultaneously with all the VTI parameters when starting from isotropic background.
+%
+%\plot{PP_SVD_All_JW}{width=0.3\columnwidth}{Same as \figref{PP_Cij_SVD_All} but for parameterization from \citep{juwon2016}}
+\tplot{PP_Full/TotalSingVal}{PP_Full/TotalSingVec1}{PP_Full/TotalSingVec0}{(a) Singular values and (b) vectors of the matrix $\Amat$ for $P-P$ scattering and $C_{ij},\rho$ parameterization. In Figure (a) the red line represents singular values in the standard $C_{ij},\rho$ parameterization and the blue line represents the hierarchical parameterization. Perfect illumination -- maximum opening angle is equal to $\pi$, all azimuths are available. There are \emph{six} non-zero singular values. (c) Singular vectors in the hierarchical parameterization.}
+%
+%Identifiable combinations of parameters can be divided into two groups -- the 
+%first three singular vectors show slightly higher sensitivity than the other 
+%three, which is in agreement with \cite{hoop1999}. The most interesting fact 
+%is 
+%that, despite previously published works \citep{hoop1999, juwon2016}, in the 
+%case of perfect illumination, the gap in this standard parameterization is 
+%within one order of magnitude and all six parameters can principally be 
+%determined.
+%
+
+
+

@@ -1,0 +1,42 @@
+\subsection{Sensitivity matrices $\Smat_{WI-WS}$ -- assembly}
+In this subsection, we discuss the matrix form of the simplified inversion problem for the vertical wavenumber $\Kv$ from arbitrary scattering mode.   
+%
+For an arbitrary perturbation of parameters $\mv (\Kv)$, the scattered wavefield can be expressed in the wavenumber domain as
+\vspace*{-0.02\columnwidth}
+\beq \label{eq:Svec}
+\delta U_{WI-WS} (k_z, \phi, \omega(k_z, K_z)) \propto \Sv_{WI-WS} (k_z, \varphi) \delta \mv (\Kv).
+\eeq
+Vector $\Sv_{WI-WS}(k_z,\phi)$ represents the set of reflection-based radiation patterns remapped into the normalized wavenumber domain. For example, element $S_1(k_z,\phi) \equiv \Sp_{WI-WS,\delta \nmz{\rho}}(k_z,\phi)$ is the radiation pattern of the density.
+
+In matrix form the equation~\eqref{eq:Svec} can be written for all $(k_z,\phi)$ corresponding to a given $K_z$ together as follows:
+\beq
+\delta \Uv_{WI-WS}(K_z) \propto \Smat_{WI-WS} \delta \mv(K_z).
+\eeq
+Columns of the matrix $\Smat$ are, spectral sensitivities reshaped into vectors. Matrix $\Smat$ determines resolvability of parameters at a given spatial resolution. It's rank is equal to the maximum number of resolvable parameters. Matrix $\Smat$ can also be linked to the Hessian of standard full-waveform inversion \citep{kazei2018, podgornova2018}.
+
+%
+%The lack of high frequencies in the data activates the high wavenumber part of the spectral sensititivity and thus is similar to the case with low wavenumbers and the lack of offset too. The only difference between these two cases is what limits the maximum effective angle -- frequency or the aperture.
+
+%\subsection{Combination of wavetypes}
+%When several components of the wavefield are measured, several modes of scattering can be used together to retrieve particular wavenumbers. As a result, different frequencies and angles will be involved in the wavenumber inversion. In order to accommodate for that, we merge matrices $\Amat_{P-P}, \Amat_{P-SV}, \Amat_{P-SH}$ in normalized wavenumber $k_z$ domain, assuming same $k_z$ ranges for different wavetypes. The spectral sensitivities for these $k_z$ ranges are then concatenated into one matrix $\Amat$:
+%\beq \label{eq:Amerge}
+%\begin{pmatrix}
+%	\delta \Uv_{P-P} \\
+%	\delta \Uv_{P-SV} \\
+%	\delta \Uv_{P-SH}
+%\end{pmatrix} = \Amat \delta \mv, ~~~ 
+%\Amat = 
+%\begin{pmatrix}
+%	\Amat_{P-P} \\
+%	\Amat_{P-SV} \\
+%	\Amat_{P-SH}
+%\end{pmatrix}. 
+%\eeq	
+%Analogously the data for $P-P$ and $P-SV$ waves can be merged, if only vertical component at the ocean bottom is measured or is trustworthy for inversion. It is also possible to consider $P-P$ and $P-SH$, removing $P-SV$ components from the \eqrf{Amerge}, which is an interesting approach because $P-SH$ scattering happens only on parameters that are beyond VTI anisotropy.
+%Then SVD analysis needs to be applied to $\Amat$ to determine the number and set of resolvable parameters.
+
+
+
+
+
+

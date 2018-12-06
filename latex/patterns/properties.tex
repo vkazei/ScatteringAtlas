@@ -1,0 +1,180 @@
+\section{Analytic properties of scattering radiation patterns}
+In this section, we discuss the analytic properties of reflection-based patterns. These include reciprocity, reduction, symmetry, relation to the linearized reflection coefficient, and transmission patterns.
+\subsection{Reciprocity}
+Symmetry of the elastic tensor $c_{ijkl}$ leads to the reciprocity 
+for scattering functions:
+\beq
+\SF_{\delta\mv} (\sv,\spv,\gv,\gpv) = 
+\spv \cdot \gpv \delta \rho + \sv \tmul \spv : \delta \cv : \gv \tmul \gpv = \\
+\gpv \cdot \spv \delta \rho +  \gv \tmul \gpv : \delta \cv : \sv \tmul \spv = 
+\SF_{\delta\mv} (\gv,\gpv,\sv,\spv). 
+\eeq
+and diffraction-based radiation patterns:
+\beq
+\Dp_{WI-WS,\delta\mv} (\sv,\gv) = \Dp_{WS-WI,\delta\mv} (\gv,\sv).
+\eeq 
+This property is obvious, yet it can sometimes help to debug radiation patterns. 
+
+\subsection{Reduction for isotropic parameters}
+For isotropic parameters ($\lambda, \mu, \rho$), the \dP depend only on the 
+opening scattering angle, defined by the scalar product $\sv\cdot\gv$ \citep[e.g.,][]{wu1985}: 
+\beq
+\Dp_{iso,WI-WS} (\sv,\gv) = \Dp_{iso,WI-WS} (\sv \cdot \gv).
+\eeq
+Therefore, they are easily represented graphically as functions of a single scalar. 
+
+\subsection{Reduction for TI parameters}
+For transversely isotropic parameters, \dP are invariant w.r.t. rotation around 
+the symmetry axis $\ev^{TI}$. Thus, the number of angles that 
+define scattering can be reduced to three \citep{calvet2006}:
+\beq
+\Dp_{TI,WI-WS} (\sv,\gv) = \Dp_{TI,WI-WS} (\sv \cdot \gv, \sv \cdot \ev^{TI}, \gv 
+\cdot \ev^{TI}).
+\eeq
+Here, $TI$ denotes any parameter of the tilted transversely isotropic medium, and $\sv \cdot \ev^{TI}$ and $\gv 
+\cdot \ev^{TI}$ give the incident and scattered angles, respectively, measured from the symmetry axis $\ev^{TI}$ of the background medium.
+
+\subsection{Symmetry}
+A radiation pattern is antisymmetric w.r.t. $\sv$ for density $\rho$, i.e., 
+\beq \label{eq:sym_rho}
+\Dp_{\rho, WI-WS} (-\sv,\gv) = -\Dp_{\rho,\sdot} (\sv \cdot \gv),
+\eeq
+and symmetric for all elastic constants $c_{ijkl}$:
+\beq \label{eq:sym_Cij}
+\Dp_{\cv, WI-WS} (-\sv,\gv) = \Dp_{\cv,\sdot} (\sv \cdot \gv).
+\eeq
+The consequence of (15) is that the density in full diffraction-based radiation patterns can always be distinguished from scattering by other parameters. Due to reciprocity, the same symmetry properties hold for the vector $\gv$. In other than $C_{ij}, \rho$ parameterizations which include density \citep[e.g.]{tsvankin1997,stovas2015,juwon2016}, the symmetry properties \eqref{eq:sym_rho} may not apply.
+ 
+\subsection{Relation to linearized reflection coefficients}
+Reflection-based radiation patterns are proportional to the linearized reflection coefficients 
+\citep{shaw2004}, even though patterns are derived from Born approximation and reflection coefficients are derived from boundary conditions at a solid-solid interface. However, unlike the reflection-based radiation patterns, the coefficients depend on the scattering type and not the perturbed parameters.
+
+\subsection{Transmission-reflection pattern relation}
+For monotypic (WI = WS) waves, the so-called transmission radiation patterns can be defined as
+\beq
+\Tp_{WI,\delta \mv} (\gv) \equiv \Dp_{WI-WI,\delta \mv} (-\gv, \gv) = \pd{c_{ijkl}}{c_{pqrs}} g_i \gp_j g_k \gp_l. 
+\eeq
+
+One interesting property of the transmission-based radiation patterns in $C_{ij},\rho$ is that, for all monoclinic elastic parameters except density, they do not differ in shape from the reflection-based radiation patterns. The proof of this relation we provide below.
+
+We first rewrite the reflection-based radiation pattern expression:
+\beq
+\Rp_{c_{pqrs},WI-WI} (\gv) \equiv \pd{c_{ijkl}}{c_{pqrs}} 
+(-1)^{1+\delta_{i3}} g_i  (-1)^{1+\delta_{j3}} \gp_j g_k \gp_l = 
+%(-1)^{\delta_{i3}+\delta_{j3}} \pd{c_{ijkl}}{c_{pqrs}} g_i \gp_j g_k \gp_l =
+(-1)^{N(i,j)} \pd{c_{ijkl}}{c_{pqrs}} g_i \gp_j g_k \gp_l,
+\eeq
+where we introduce a function 
+\beq
+\nt (p,q) \equiv  \delta_{p3}+\delta_{q3}
+\eeq
+that counts the number of elements equal to three in a sequence of numbers.
+
+
+For monoclinic parameters $c_{pqrs}$ $\nt(p,q)$ and $\nt(r,s)$ are either odd or even together
+\beq
+\nt (p,q) \equiv \nt(r,s) \Mod 2, 
+\eeq
+which is required by the symmetry of elastic equations w.r.t. the change in the direction of the third axis.  
+
+If $\nt (p,q)$ is even (either equal two or zero)
+$$
+\nt (p,q) \equiv \nt(r,s) \equiv 0 \Mod 2
+$$ 
+i.e., for scattering on the orthorhombic parameters $\Cv_{ij},$ where $i \leq 3$ and $j \leq 3$,  and $\Cv_{66}$, and the monoclinic parameters $\Cv_{16},\Cv_{26}$, and $\Cv_{36}$ (in Voigt notation), then
+\beq \label{eq:transEqRefl}
+\Rp_{c_{pqrs},WI-WI} (\gv) \equiv \pd{c_{ijkl}}{c_{pqrs}} g_i \gp_j g_k \gp_l = \Tp_{c_{pqrs},WI} (\gv).
+\eeq
+On the other hand, if $\nt (p,q) \bmod 2 = \nt(r,s) \bmod 2 = 1$, i.e., for scattering on $\Cv_{44},\Cv_{55}$, and the monoclinic parameter $\Cv_{45}$, then
+\beq \label{eq:transEqMRefl}
+\Rp_{c_{pqrs},WI-WI} (\gv) \equiv -\pd{c_{ijkl}}{c_{pqrs}} g_i \gp_j g_k \gp_l = -\Tp_{c_{pqrs},WI} (\gv).
+\eeq
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.7\linewidth]{CijWiki}
+%	\caption{}
+%	\label{fig:CijWiki}
+%\end{figure}
+
+
+
+
+\subsection{Monoclinic -- monotypic}
+
+For non-monoclinic parameters $c_{pqrs}$,
+\beq
+N(p,q) \neq N(r,s) \bmod 2.
+\eeq
+Without any loss of generality we assume that $N(p,q) mod 2 = 1$
+and in particular $p=3$. Automatically $q\neq p$ and therefore:
+\beq
+\Rp_{c_{3qrs},WI-WI} (\gv) \equiv
+%
+(-1)^{\delta_{i3}+\delta_{j3}} \pd{c_{ijkl}}{c_{3qrs}} g_i \gp_j g_k \gp_l = \\
+%
+- \pd{c_{3qkl}}{c_{3qrs}} g_p \gp_q g_k \gp_l 
+- \pd{c_{q3kl}}{c_{3qrs}} g_q \gp_p g_k \gp_l 
++ \\
+\pd{c_{kl3q}}{c_{3qrs}} g_p \gp_q g_k \gp_l
++ \pd{c_{klq3}}{c_{3qrs}} g_q \gp_p g_k \gp_l \equiv 0.
+\eeq
+
+We link the vertical resolution directly to the reflection-based radiation patterns in the next section, which finalizes our review of the radiation-pattern properties. 
+
+\section{Born approximation validity} 
+The Born approximation for scattering (\eqrf{hudson}) is valid for relatively small
+\beq \label{eq:assContr}
+\frac{|\delta \mv|}{|\mv|} << 1,
+\eeq
+and local
+\beq \label{eq:assLocal}
+\frac{\omega d}{V_0}\frac{|\delta \mv|}{|\mv|} << 1,
+\eeq
+perturbations $\delta \mv$, where $V_0$ is the smallest background velocity ($V_s$ in the isotropic case), and $d$ is the diameter of the perturbation. The above assumptions are best met in the case of low-contrast point scatterers. For instance, the approximation is valid for perturbations in thin, low-contrast layers and near-normal wave incidence angles \citep{shaw2004}. %
+
+The Born approximation does not imply specific shape restrictions on the scattering 
+perturbation or the background medium. Therefore, modern methods for the dynamic 
+inversion of seismic wavefields, including linearized reverse-time migration 
+(LSRTM) and every iteration of full-waveform inversion (FWI), rely heavily on it. 
+Thus, we can analyze the resolution of these methods by exploring the 
+sensitivity kernels in the spatial Fourier domain \citep[e.g.,][]{devaney1984,wu:11,mora1989,sirgue2004,kazei2013gp,kazei2013spectral,podgornova,kazei2017}.
+
+%If, on the other hand it is 1, then:
+%\beq
+%\Rp_{c_{pqrs},P-P} (\gv) \equiv -\pd{c_{ijkl}}{c_{pqrs}} g_i g_j g_k g_l = \Tp_{\sdot} (\gv).
+%\eeq
+%For non-monoclinic parameters the number of 3s is different by mod 2 let us assume that one and only one of p and q is equal to 3, then:
+%\beq
+%\Rp_{c_{pqrs},P-P} (\gv) \equiv -2 \pd{c_{pqkl}}{c_{pqrs}} g_p g_q g_k g_l + 2 \pd{c_{klpq}}{c_{pqrs}} g_p g_q g_k g_l= 0.
+%\eeq
+
+%\section{Incident wavefield}
+%%\cite{walter2007} analyzed the empirical relations between the amplitudes of $P$ 
+%%and $S$ waves emitted by explosive and double-couple earthquake sources, and came to the 
+%%conclusion that $P$ waves dominate the explosions, while $S$ waves dominate 
+%%the earthquakes. 
+%For simplicity, we consider incident plane waves with unit amplitudes:
+%\beq
+%\Uv_0 = \Av_0 \exp(i \kv_s \cdot \xv),
+%\eeq
+%where $\Av_0$ and $\kv_s$ represent the polarization and wavenumber vectors, respectively, of an incident wave.
+%For $P$ waves,
+%\beq \label{eq:P_sou}
+%\Av_0 = \sv,~ \kv_s=\frac{\omega}{\v_p}\sv, \sv = \frac{\xv_s-\xv}{|\xv-\xv_s|}.
+%\eeq
+%For $SV$ waves,
+%\beq
+%\Av_0 = \sv_\theta,~ \kv_s=\frac{\omega}{\v_s}\sv,~
+%\sv_\theta =  \left( \frac{\gv \times \ev_z}{|\gv \times \ev_z|}\times \gv
+%\right).
+%\eeq
+%For $SH$ waves,
+%\beq
+%\Av_0 = \sv_\phi,~ \kv_s=\frac{\omega}{\v_s}\sv,~
+%\sv_\phi = \left( \frac{\sv \times \ev_z}{|\sv \times \ev_z|}\right).
+%\eeq
+
+
+ 
+

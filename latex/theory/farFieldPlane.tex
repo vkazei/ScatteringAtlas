@@ -1,0 +1,98 @@
+\subsection{Far-field plane-wave scattering}
+Here, we show that the radiation patterns simply represent different types of scattered wavefields for a point scatterer 
+when the far-field or plane-wave approximation is applied to \eqrf{hudson} below. While the derivation is well-known, we return to it in order to generalize the radiation patterns to arbitrary scatterers that 
+satisfy \eqrf{hudson}. First, we utilize the approximation from the receiver 
+side of \eqrf{hudson}, since it includes Green's tensors and not incident 
+wavefields. Then, we treat the source wavefields in the same manner.
+
+\subsubsection{The Born approximation}
+We consider an incident wavefield $\Uv^0$ on a perturbation of the density ($\delta\rho(\xv)$) and stiffness tensor ($\delta c_{kjpq}(\xv)$) parameters.
+The frequency-domain Born approximation for the scattered wavefield $\delta \Uv$ in an anisotropic elastic medium is \citep[e.g.,][]{hudson1981,beylkin1990,shaw2004}
+\beq \label{eq:hudson}
+\delta U_i (\xv_s,\xv_\gv,\omega) = \intyV  (\delta \rho(\xv) U^0_k \omega^2 - 
+\delta c_{kjpq}(\xv) \pd{U^0_p}{x_q}  \pd{}{x_j})G_{ik}(\xv_g, \xv) \d \xv,
+\eeq
+where $\omega$ is the angular frequency, $\xv_s$ and $\xv_g$ are the coordinates of the source and receiver, respectively, and $G_{ik}(\xv_g, \xv)$ is the Green's tensor for the background medium. Integration is performed over the volume of the perturbation $\delta \mv = (\delta \rho, \delta c_{ijpq})$, where $\mv$ is the vector of unperturbed parameters. 
+
+\subsubsection{Wavefields scattered by perturbation}
+The Green's tensor $G_{ik}$ in the Born approximation~\eqref{eq:hudson} physically 
+takes care of the propagation of a scattered wavefield from the perturbation to the 
+receiver.
+The far-field approximation for the Green's tensor \citep[e.g.,][]{snieder2002} in a homogeneous, isotropic background 
+%is
+%\begin{align} \label{eq:farField}
+%	\Gv(\xv,\xv_g) &= \alpha\bigg(  e^{i\frac{\omega}{\v_p}||\xv - \xv_g||} \gv\gv
+%	\\
+%	&+\frac{1}{\varkappa^2} e^{i\frac{\omega}{\v_s}||\xv - \xv_g||} (\gv_{\theta}\gv_{\theta} + \gv_{\phi}\gv_{\phi})\bigg), 
+%	\varkappa = \frac{\v_s}{\v_p}, \alpha = \frac{1}{4\pi\rho \v_p^2||\xv - \xv_g||},
+%\end{align}
+%where $\gv,~\gv_{\theta},$ and $~\gv_{\phi}$ are the polarization vectors of the $P$, $SV$, and $SH$ waves, respectively. Thus, the far-field part of the Green's tensor (26) 
+consists of $P,~ SV,$ and $SH$ waves:
+\beq \label{eq:3G}
+\Gv(\xv_g, \xv) = \alpha (\Gv_P(\xv_g, \xv) + \Gv_{SV}(\xv_g, \xv) + \Gv_{SH}(\xv_g, \xv)). 
+\eeq
+While $SV$ and $SH$ waves in isotropic media most often come together, they are usually recorded separately and therefore can be analyzed separately too. 
+The coefficient 
+\beq
+\alpha = \frac{1}{4\pi\rho \v_p^2||\xv - \xv_g||}.
+\eeq
+is dropped in our resolution analysis, since it is related to geometrical spreading and can be effectively compensated using pseudo-hessian techniques. Different components of the Green's function are approximated locally by plane waves. For the first component $\Gv_P$, the approximation leads to
+\beq \label{eq:GvP}
+\Gv_P = e^{i\frac{\omega}{\v_p}||\xv_g- \xv ||} \gvn\gvn \simeq 
+e^{i\frac{\omega}{\v_p}\gv\cdot(\xv - \xv_g)}\gvn\gvn, ~ 
+\gvn = \frac{\gv}{|\gv|} = \frac{\xv-\xv_g}{|\xv-\xv_g|},
+\eeq
+which is the $P$ wave approximated by a plane wave at the location $\xv$. ($\gv\gv)_{ik} = g_i g_k$ denotes standard outer product of vector $\gv$ with itself. 
+%For the second and third 
+%components, $\Gv_{SV}$ and $\Gv_{SH}$, similar expressions can be provided 
+%\citep{snieder2002}.
+The second component, $\Gv_{SV}$, represents a shear wave polarized in the vertical plane 
+that contains $\xv$ and $\xv_g$:
+\beq \label{eq:GvSV}
+\Gv_{SV} = \frac{1}{\varkappa^2} e^{i\frac{\omega}{\v_s}||\xv - \xv_g||}\gv_{\theta}\gv_{\theta} \simeq 
+\frac{1}{\varkappa^2} e^{i\frac{\omega}{\v_s}\gv\cdot(\xv - \xv_g)}\gv_{\theta}\gv_{\theta},~
+\gv_\theta = \left( \frac{\gv \times \ev_z}{|\gv \times \ev_z|}\times \gvn \right). 
+\eeq
+Finally, the third component of the Green's tensor, $\Gv_{SH}$, is an $SH$ wave polarized along $\gv_\phi$:
+\beq \label{eq:GvSH}
+\Gv_{SH} = \frac{1}{\varkappa^2} e^{i\frac{\omega}{\v_s}||\xv - \xv_g||}\gv_{\phi}\gv_{\phi} \simeq 
+\frac{1}{\varkappa^2} e^{i\frac{\omega}{\v_s}\gv\cdot(\xv - \xv_g)}\gv_{\phi}\gv_{\phi},
+\gv_\phi = \left( \frac{\gv \times \ev_z}{|\gv \times \ev_z|}\right),
+\eeq
+which is the horizontal component of a shear wave.
+%\subsubsection{Incident wavefield}
+
+For the incident wavefield we consider point forces in three directions $\svn, \sv_\phi, \sv_\theta$, leading to three respective wavetypes:
+\beq \label{eq:P_sou}
+\Uv_{0P} = \Gv_P(\xv_s,\xv) \cdot \svn,
+\eeq
+\beq
+\Uv_{0SV} = \Gv_{SV}(\xv_s,\xv) \cdot \sv_\theta,
+\eeq
+\beq
+\Uv_{0SH} = \Gv_{SH}(\xv_s,\xv) \cdot \sv_\phi.
+\eeq
+%\cite{walter2007} analyzed the empirical relations between the amplitudes of $P$ 
+%and $S$ waves emitted by explosive sources and double-couple earthquake sources, and came to the conclusion that $P$ waves dominate the explosions, while $S$ waves dominate the earthquakes.
+
+%For simplicity, we consider incident plane waves with unit amplitudes:
+%\beq
+%\Uv_0 = \Av_0 \exp(i \kv_s \cdot \xv),
+%\eeq
+%where $\Av_0$ and $\kv_s$ represent the polarization and wavenumber vectors, respectively, of an incident wave.
+%For $P$ waves,
+%\beq \label{eq:P_sou}
+%\Av_0 = \svn,~ \kv_s=\frac{\omega}{\v_p}\svn, \svn = \frac{\xv_s-\xv}{|\xv-\xv_s|}.
+%\eeq
+%For $SV$ waves,
+%\beq
+%\Av_0 = \sv_\theta,~ \kv_s=\frac{\omega}{\v_s}\svn,~
+%\sv_\theta =  \left( \frac{\sv \times \ev_z}{|\sv \times \ev_z|}\times \svn
+%\right).
+%\eeq
+%For $SH$ waves,
+%\beq
+%\Av_0 = \sv_\phi,~ \kv_s=\frac{\omega}{\v_s}\svn,~
+%\sv_\phi = \left( \frac{\sv \times \ev_z}{|\sv \times \ev_z|}\right).
+%\eeq
+

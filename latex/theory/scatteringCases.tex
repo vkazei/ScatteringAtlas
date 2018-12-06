@@ -1,0 +1,59 @@
+\subsection{Model wavenumbers and scattering modes}
+We start with scattered $P$ waves as they are the easiest to handle and by far the most popular in FWI applications. By substituting equations \eqref{eq:P_sou} and \eqref{eq:GvP} into equation \eqref{eq:hudson}, and projecting the scattered wavefield $\Uv$ onto the direction of $\gv$ (from the perturbation to the receiver), we obtain the approximate amplitude of the scattered $P-P$ waves \citep{kazei2018} as
+\beq \label{eq:UPPInt}\label{eq:UPPInt1}
+\delta U_{PP} = \delta \Uv_P \cdot \svn  \propto 
+%\frac{\delta \mathbf{U} \cdot \gv}{\alpha_{PP}} \simeq
+\intyV   e^{i\Kv \cdot \xv} (\svn\cdot\gvn \delta \nmz{\rho} (\xv) + \svn\svn : \delta 
+\nmz{\cv}(\xv) :\gvn\gvn) \d \xv, 
+\eeq
+where
+%\beq 
+%\alpha_{PP} = \frac{\omega^2}{v^2_p} \alpha_s \alpha_g e^{i\frac{\omega}{\v_p}(-\xv_s\sv-\xv_g\gv)}
+%\eeq
+%and
+\beq \label{eq:K}
+\Kv = \omega(\sv+\gv).
+\eeq
+
+Analogously, for the amplitude of the scattered $P-SV$ waves, we use equations \eqref{eq:P_sou} and \eqref{eq:GvSV}, and project \eqref{eq:hudson} onto vector $\gv_{\theta}$ to obtain
+\beq \label{eq:UPSVInt}
+\delta U_{PSV} = \delta \Uv_P \cdot \sv_\theta 
+\propto   
+%\frac{\delta \mathbf{U} \cdot \gv_\theta}{\alpha_{PS}} \simeq\frac{1}{\varkappa^3}
+\intyV  e^{i\Kv_{PS}\cdot\xv} (\svn\cdot\gv_{\theta} \delta \nmz{\rho} + \frac{1}{\varkappa} \svn\svn : \delta \nmz{\cv} :\gvn\gv_{\theta}) \d \xv. 
+\eeq
+%where
+%\beq
+%\alpha_{PS} = \frac{\alpha_{PP}}{\varkappa^3} e^{i\omega\gv_\theta \cdot (\frac{\xv_g}{\v_p}-\frac{\xv_g}{\v_s})}, \Kv_{PS}=\frac{\omega}{\v_p}\sv+\frac{\omega}{\v_s}\gv.
+%\eeq
+
+Replacing the polarization vector $\gv_\theta$ in (39) with $\gv_\phi$ is sufficient to obtain similar expressions for the $P-SH$ scattering scenario. For $S$ waves, we obtain similar expressions by using equations \eqref{eq:P_sou}, \eqref{eq:GvSH}, and \eqref{eq:hudson}:
+\beq \label{eq:USHSHInt}
+\delta U_{SHSH} = \delta \Uv_{SH} \cdot {\sv_\phi} 
+\propto 
+%\equiv  \frac{\delta \mathbf{U} \cdot \gv_\phi}{\alpha_{SS}} \simeq \frac{1}{\varkappa^3}
+\intyV  e^{i\Kv_{SS}\cdot\xv} (\sv_\phi \cdot \gv_\phi \delta \rho + \frac{1}{\varkappa^2} \nmz{\sv}\sv_\phi : \delta \nmz{\cv} :\nmz{\gv}\gv_{\phi}) \d \xv. 
+\eeq
+%where
+%\beq
+%\alpha_{SS} = \frac{\alpha_{PP}}{\varkappa^6} e^{i\omega\gv \cdot (\frac{\xv_g}{\v_s}-\frac{\xv_g}{\v_s})}, 
+%\Kv_{SS}=\frac{\omega}{\v_s}(\sv+\gv).
+%\eeq
+
+For different types of scattering, our further resolution analysis is based on equations 
+(\ref{eq:UPPInt1}-\ref{eq:USHSHInt}) and their analogs, which describe the monochromatic scattering of $P$ waves.
+
+ 
+
+Different scattering modes contribute to different wavenumbers at 
+the same reflection angle and frequency of the image. Therefore, in order to investigate all the
+information available, we need to remap the reflection-based radiation patterns into 
+the spatial wavenumber domain (\figref{K_PP_Full}).
+
+\tplot{K_PP}{K_PS}{K_SS}{For the same incident angle 
+	and same temporal frequency different modes provide illumination to different 
+	vertical wavenumbers. $P-S$ waves illuminate the lowest wavenumbers (good for FWI), 
+	$S-S$ waves -- the highest wavenumbers (good for migration), and $P-S$ waves -- the intermediate wavenumbers.}
+
+
+

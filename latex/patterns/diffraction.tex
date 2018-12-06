@@ -1,0 +1,48 @@
+\subsection{Classic diffraction-based scattering radiation pattern -- $\Dp$} 
+A general anisotropic medium allows for nine types of plane-wave scattering, 
+each characterized by four independent angles that represent directions of 
+propagation.
+For a given incident and scattered wave type in an isotropic background (e.g., $P-P,~ P-SV,~SV-SV,~SV-SH$, 
+etc.), the scattered wavefield becomes a function of the two vectors $\sv$ and 
+$\gv$. This function is the diffraction-based radiation pattern:
+\beq
+\Dp_{WI-WS, \delta \mv}(\sv,\gv) \equiv \frac{ \SF (\sv, \gv, \spv(\sv, WI), \gpv (\gv, WS), \delta \mv)}{||\delta \mv||}.
+\eeq
+Here, $WI$ denotes the type of incident waves, and $WS$ denotes the type of scattered 
+waves ($P-P, P-S_i, S_i-P$, or $S_i-S_j$) for a given parameter perturbation 
+$\delta \mv$. 
+
+
+
+\DP characterize the scattering of certain 
+types of plane waves on a point-like perturbation of the parameters. For example, in the case of $P-P$ ($WI=WS=P$) scattering in an isotropic background 
+\begin{align}
+\spv(\sv, \sdot) &= \sv,~ 
+\gpv (\gv, \sdot)  = \gv 
+\end{align}
+
+on a $\lambda$ 
+perturbation,
+%\beq
+\begin{align}
+	\delta c_{ijkl} = \delta_{ij} \delta_{kl} \delta \lambda, ~
+	WI-WS &= P-P, ~
+	\delta \rho = 0,~ \delta m = \delta \lambda \\
+	\Dp_\sdot (\sv,\gv) &= \Dp_{P-P,\delta\lambda} (\sv,\gv) = \frac{1}{\v_p^2}.
+\end{align}
+For vertically propagating incident $P$ waves, the scattering radiation 
+patterns become functions of two real arguments, which are $\gv$ vector components, 
+and can be presented as a 2D plot \citep{eaton1994}.
+
+
+\DP were examined by \cite{wu1985,tarantola1986,beylkin1990} for isotropic 
+parameters, 
+%\rmrk{VT: need commas not semi colons for this list}, 
+and by \cite{calvet2006} for VTI parameters in the classic \cite{thomsen1986}
+parameterization. For isotropic parameters in an isotropic background, the full
+scattering information can be recovered by a single  diffraction-based  radiation  pattern, as the only 
+important parameter in that case is the difference between the incident and 
+scattered directions \citep{wu1985,tarantola1986}. This is not the case in anisotropic media \citep[e.g.,][]{eaton1994,calvet2006,juwon2016}. We illustrate the dependence of the invoked source at the scatter location on the incidence using the example of the $C_{55}$ and $C_{12}$ elements shown in \figref{patterns/C_55/PP_diffZ_Full}. The dependence of the diffraction patterns on the four angles describing the source and receiver directions complicates further analysis. To complete our analysis, we must reduce the diffraction-based patterns to reflection and transmission scattering radiation patterns. 
+
+\fplot{patterns/C_55/PP_diffZ}{patterns/C_55/PP_diffXYZ}{patterns/C_13/PP_diffZ}{patterns/C_13/PP_diffXYZ}{Diffraction-based radiation pattern for $P-P$ scattering and perturbation in $C_{55}$ and $C_{13}$ for vertical and oblique ($\sv = \frac{1}{\sqrt{3}\v_p}(1, 1, 1)^T$) incidence. $C_{55}$ does not scatter vertically incident waves -- (a), but scatters for out of symmetry plane incidence -- (b). $C_{13}$ works like an X-axis expansion source for vertical incidence and like expansion source in XZ plane for oblique incidence -- (d).}
+

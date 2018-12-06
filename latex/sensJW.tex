@@ -1,0 +1,67 @@
+\subsection{Hierarchical parameterization}
+
+An FWI-suitable parameterization of orthorhombic media should describe isotropic media using only three non-zero parameters -- $V_p,V_s,$ and $\rho$. 
+
+By adding three more parameters -- $\varepsilon_1, \eta_1,$ and $\gamma_1$ -- we can describe VTI media.
+
+Finally, four additional parameters -- $\varepsilon_d, \eta_d, \gamma_d$, and $\delta_3$ -- allow us to go from VTI to orthorhombic anisotropy. This kind of parameterization is presented in \cite{juwon2016}.
+
+
+Radiation patterns and the spectral sensitivities for any parameterization can be obtained through variable substitution to $C_{ij},\rho$ parameterization. 
+\beq \label{eq:JacoCij}
+\bm{\Rp}_{\mv, WT} = \bm{\Rp}_{\mv_0(\mv), WT} = \bm{\Rp}_{\pd{\mv_0}{\mv}\mv}
+\eeq
+
+The Jacobian $\pd{(\nmz{C}_{ij},\nmz{\rho})}{\mv}$ for the hierarchical parameterization has the following form:
+\beq \label{eq:Jaco}
+\delta \left(\begin{array}{c}
+	 \nmz{\rho}  \\
+	\nmz{C}_{11} \\
+	\nmz{C}_{22} \\
+	\nmz{C}_{33} \\
+	\nmz{C}_{12} \\
+	\nmz{C}_{13} \\
+	\nmz{C}_{23} \\
+	\nmz{C}_{44} \\
+	\nmz{C}_{55} \\
+	\nmz{C}_{66}
+\end{array}\right)
+= \left(
+\begin {array}{cccccccccc} 
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+1 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+1 & 2 & 0 & 0 & 2 & 0 & 0 & 0 & 0 & 0 \\
+1 & 2 & 0 & -2 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+1-2\varkappa & 2 & -4\varkappa & 0 & 0 & 0 & 0 & 1 & -4\varkappa & 0 \\
+1-2\varkappa & 2 & -4\varkappa & -1 & 0 & -1 & 0 & 0 & 0 & 0 \\
+1-2\varkappa & 2 & -4\varkappa & -1 & 1 & -1 & -1 & 0 & 0 & -4\varkappa \\
+\varkappa & 0 & 2\varkappa & 0 & 0 & 0 & 0 & 0 & 0 & 2\varkappa\\
+\varkappa & 0 & 2\varkappa & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+\varkappa & 0 & 2\varkappa & 0 & 0 & 0 & 0 & 0 & 2\varkappa & 0
+\end {array}
+ \right)
+\delta \left(\begin{array}{c}
+	  \nmz{\rho}     \\
+	 \nmz{V}_{p}     \\
+	 \nmz{V}_{s}     \\
+	 \eps_1    \\
+	 \eps_d    \\
+	 \eta_1    \\
+	 \eta_d    \\
+	\delta_3   \\
+	\gamma_1   \\
+	\gamma_d 
+\end{array}\right)
+\eeq
+%
+We also present the partial derivatives of the $C_{ij}$ parameters in a graph (\figref{parDerivCij}) to illustrate the perturbations in the elastic parameters that are introduced by perturbations from a single hierarchical parameter. To simplify formulas and focus on geometric properties of scattering we normalize units in the following way -- velocities are normalized by the background $\v_{p0}$, densities by $\rho_0$, elastic constants by $\rho_0 \v_p^2$. The normalized quantities are distinguished by the dash, e.g.
+\beq
+\nmz{\v}_p \equiv \frac{\v_p}{\v_{p0}}, 
+\nmz{\v}_s \equiv \frac{\v_s}{\v_{p0}},
+\nmz{C}_{55} \equiv \frac{C_{55}}{\rho\v^2_{p0}}. 
+\eeq  
+
+\plot{parDerivCij}{width=\columnwidth}{Partial derivatives of $C_{ij}$ parameters w.r.t. hierarchical parameterization parameters for $V_{0s}/V_{0p}=\varkappa=\frac{1}{\sqrt{3}}$.}
+
+
+An advanced choice of parameterization will give some insights that are not straightforward from the $C_{ij}$ parameterization. For example, parameters contributing to $V_p$ provide zero sensitivity to $S$-wave scattering. Being a combination of nine $C_{ij}$ parameters, $V_p$ is hardly discoverable in the original parameterization. Thus, our knowledge is still limited by the choice of parameterization, as we cannot visually identify coupling among three or more parameters.
