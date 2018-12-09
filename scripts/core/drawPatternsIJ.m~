@@ -20,7 +20,7 @@ patternArray = {'diffZ', 'diffX', 'diffXZ', 'diffXYZ', 'trans', 'reflZ'};%
 
 % plot radiation patterns of each type
 
-path_save_pattern_Cij = [path_pattern_save 'C_' num2str(i) num2str(j) '/'];
+path_save_pattern_Cij = [path_pattern_save 'C_', num2str(i),num2str(j),'/'];
 mkdir(path_save_pattern_Cij);
 
 for patType = patternArray
@@ -30,9 +30,7 @@ for patType = patternArray
     fig1.PaperSize = [20 10];
     fig1.PaperPosition = [15 5 19 19];
     
-    fprintf('saving figure %s \n',[path_save_pattern_Cij,WT,'_',patType{1}])
-    
-    print(fig1,[path_save_pattern_Cij,WT,'_',patType{1}],'-depsc','-r0')
+    print(fig1,[path_save_pattern_Cij,WT,'_',patternType],'-depsc','-r0')
     
 end
 end

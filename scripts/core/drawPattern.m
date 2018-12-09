@@ -70,7 +70,7 @@ function drawPattern(WT,Cij,denFlag,patternType)
 %                 %sv = [1/2 0  sqrt(3)/2];
 %                 sv = [0.5; 0.5; 0.5^0.5];
 
-n=101;
+n=21;
 %
 %
 % Cij = zeros(6);
@@ -218,13 +218,5 @@ ylim([-1.15 1.15])
 zlim([-1.15 1.15])
 
 %% axis tight
-fig1 = gcf;
-fig1.PaperUnits = 'inches';
-fig1.PaperSize = [20 10];
-fig1.PaperPosition = [15 5 19 19];
-
-
-
-print(fig1,['patterns/',WT,'_',patternType],'-depsc','-r0')
 
 end

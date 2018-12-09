@@ -1,15 +1,20 @@
 %% resolution for Cijs
+% this function evaluates spectral sensitivities for all Cij parameters
+% tho
+% it takes as input the type of parameterization
+% parSET is defined in mainCIJ.m
 
-function res = resFunc(parSET)
+function resFunc(parSET)
 
 %read parameters from structure
 v2struct(parSET);
 
+% set of parameters to be useed for description of the model
 if CijFlag == 0
     parNameArray = {'\rho', 'V_p', 'V_s', '\epsilon_1', '\epsilon_d', '\eta_1', '\eta_d', '\delta_3', '\gamma_1', '\gamma_d'};
 else
     parNameArray = {'\rho', 'C_{11}', 'C_{22}', 'C_{33}', 'C_{12}', 'C_{13}', 'C_{23}', 'C_{44}', 'C_{55}', 'C_{66}'};
-end;
+end
 
 %partial derivatives computed in Maple
 parInCijTensor=loadFromMapleDen('parInCij.mat',tNumPar-1,CijFlag,VsFlag,denFlag,isoKnownFlag);
@@ -411,19 +416,18 @@ print(strcat('FIG/TotalSingVec',num2str(CijFlag)),'-depsc2','-r0')
 % fig1.PaperPositionMode = 'auto';
 % print(strcat('FIG/SVD_AllTogether'),'-dpng','-r0')
 
-for SVDthresh = SVDthreshArr
-    
-    nParRes(TsensAll.(WT),SVDthresh);
-    %nParResAngle(TsensAll.(WT),SVDthresh,parSET);
-    if strcmp(WT,'PSV') || strcmp(WT,'PSV')
-        nParResAnglePS(TsensAll.(WT),SVDthresh,parSET);
-    elseif strcmp(WT,'SVSV') || strcmp(WT,'SVSH') || strcmp(WT,'SHSH')
-        disp('Angular resolution for incident S waves is not yet implemented');
-    elseif strcmp(WT,'PP')
-        nParResAngle(TsensAll.(WT),SVDthresh,parSET);
-    end;
-    
-end;
+% for SVDthresh = SVDthreshArr
+%     
+%     nParRes(TsensAll.(WT),SVDthresh);
+%     %nParResAngle(TsensAll.(WT),SVDthresh,parSET);
+%     if strcmp(WT,'PSV') || strcmp(WT,'PSV')
+%         nParResAnglePS(TsensAll.(WT),SVDthresh,parSET);
+%     elseif strcmp(WT,'SVSV') || strcmp(WT,'SVSH') || strcmp(WT,'SHSH')
+%         disp('Angular resolution for incident S waves is not yet implemented');
+%     elseif strcmp(WT,'PP')
+%         nParResAngle(TsensAll.(WT),SVDthresh,parSET);
+%     end
+% end
 
 %nParRes(TsensAll.PP,0.01);
 % nParRes2(TsensAll,0.1);
@@ -431,6 +435,5 @@ end;
 % nParRes3(TsensAll,0.1);
 % nParRes3(TsensAll,0.01);
 
-res = 0;
 end
 
