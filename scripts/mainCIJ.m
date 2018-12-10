@@ -1,11 +1,11 @@
-%% This is the main script that should produce all the pictures for the paper and moves them
+%% This is the main script producing all the pictures for the paper
 %
 close all
 clearvars
 addpath([pwd '/tools']);
 addpath([pwd '/maple']);
 addpath([pwd '/core']);
-system('mkdir FIG');
+%system('mkdir FIG');
 
 %% define parameters
 tNumPar = 10; % total number of parameters that are considered for inversion
@@ -96,7 +96,7 @@ parSET.path_pattern_save = '../latex/Fig/PSV/';
 close all
 
 % Cij parameterization
-% parSET.CijFlag = 1;
+parSET.CijFlag = 1;
 % parSET.VsFlag = 1;
 % parSET.denFlag = 1;
 resFunc(parSET);
@@ -160,8 +160,7 @@ system('mv FIG ../latex/Fig/SVSV')
 
 %% SH-SH waves
 close all
-
-system('mkdir FIG');
+parSET.path_pattern_save = '../latex/Fig/SHSH/';
 parSET.WTCellArray = {'SHSH'};
 
 parSET.CijFlag = 1;
@@ -170,13 +169,9 @@ resFunc(parSET);
 parSET.CijFlag = 0;
 resFunc(parSET);
 
-system('rm -rf ../latex/Fig/SHSH')
-system('mv FIG ../latex/Fig/SHSH')
-
 %% SV-SH waves
 close all
-
-system('mkdir FIG');
+parSET.path_pattern_save = '../latex/Fig/SVSH/';
 parSET.WTCellArray = {'SVSH'};
 
 parSET.CijFlag = 1;
@@ -184,8 +179,5 @@ resFunc(parSET);
 
 parSET.CijFlag = 0;
 resFunc(parSET);
-
-system('rm -rf ../latex/Fig/SVSH')
-system('mv FIG ../latex/Fig/SVSH')
 
 

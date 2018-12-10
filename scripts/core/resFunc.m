@@ -10,8 +10,11 @@ function resFunc(parSET)
 % make folder for pictures if not made yet
 mkdir(parSET.path_pattern_save);
 
-%read parameters from structure
+%%read parameters from structure
 v2struct(parSET);
+
+fprintf('\n Starting scattering resolution analysis for');
+disp(parSET.WTCellArray);
 
 % set of parameters to be useed for description of the model
 if CijFlag == 0
@@ -22,9 +25,24 @@ else
     parNameArray = {'\rho', 'C_{11}', 'C_{22}', 'C_{33}', 'C_{12}', 'C_{13}', 'C_{23}', 'C_{44}', 'C_{55}', 'C_{66}'};
 end
 
-%partial derivatives computed in Maple are loaded in case Oh-Alkhalifah
-%parameterization is used
-parInCijTensor=loadFromMapleDen('parInCij.mat',tNumPar-1,CijFlag,VsFlag,denFlag,isoKnownFlag);
+disp('Parameterization');
+disp(parNameArray);
+
+%partial derivatives computed in Maple are loaded
+% number of Cij parameters
+par_maple.NCijPar = tNumPar-1;
+%CijFlag = 1 - parameterize by Cij 
+par_maple.CijFlag = CijFlag;
+%drop out Vs related parameters = 0
+par_maple.VsFlag = VsFlag;
+%include density = 1
+par_maple.denFlag = denFlag;
+% fix isotropic parameters = 1
+par_maple.isoKnownFlag = isoKnownFlag;
+% save pictures to the same location
+par_maple.path_pattern_save = parSET.path_pattern_save;
+
+parInCijTensor=loadFromMapleDen('parInCij.mat', par_maple);
 
 iFig = 11;
 
@@ -34,7 +52,7 @@ for cellWT = WTCellArray
     % item is a 1x1 cell array, not the actual string contents.
     % item{1} is the string contents.
     %disp(item{1})
-    WT = cellWT{1}
+    WT = cellWT{1};
     
     %%
     % for normalization
@@ -44,7 +62,7 @@ for cellWT = WTCellArray
     % sensitivity array
     TsensAll.(WT) = zeros(tNumPar,nPhi,nKz);
     
-    % evaluating the sensitivities
+    disp('evaluating the sensitivities for orthorhombic parameters');
     for iPar=1:tNumPar
         % partial derivatives for parameter number iPar
         Cij(:,:) = parInCijTensor(iPar,:,:);
@@ -120,6 +138,7 @@ for cellWT = WTCellArray
     Cij = zeros(6);
     TsensCijAll.(WT) = zeros(6,6,nPhi,nKz);
     fig2 = figure(2);
+    disp('evaluating sensitivities for all 21 Cij parameters');
     for i = 1:6
         for j = i:6
             Cij = zeros(6);
@@ -212,9 +231,9 @@ for cellWT = WTCellArray
 %     %% SVD analysis for "time domain"
 %           
 %     fig2=figure(iFig);
-%     superSens.(WT) = reshape(TsensAll.(WT),tNumPar,nPhi*nKz);
-%     [~,S.(WT),V.(WT)] = svd(superSens.(WT)','econ');
-%     TsensTotal.par = [TsensTotal.par superSens.(WT)];
+    superSens.(WT) = reshape(TsensAll.(WT),tNumPar,nPhi*nKz);
+     [~,S.(WT),V.(WT)] = svd(superSens.(WT)','econ');
+TsensTotal.par = [TsensTotal.par superSens.(WT)];
 %     
 %     subplot(1,2,1);
 %     
