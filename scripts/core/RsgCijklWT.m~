@@ -6,17 +6,12 @@
 % WT - type of scattering experiment
 
 function Rp = RsgCijklWT(sv,gv,cijkl,WT)
-
-% example with P-P scattering:
-%
-% WT = 'PP';
-% vertical incidence
-% sv = [0;0;1]; 
-% scattering along the second (y) axis
-% gv = [0;1;0];% 
+% sv = [0;0;1];
+% gv = [0;1;0];
+% 
 % Cij = diag([1 1 1 1 1 1]); % mu perturbation
-% mapping it to the tensor notation
-% % cijkl = MS_cij2cijkl(Cij);
+% 
+% cijkl = MS_cij2cijkl(Cij);
 
 % normalization of scattering coefficients is off kappaI = 1 
 kappa3 = 1;%3^1.5; % this is the cube of v_p/v_s ratio
@@ -46,7 +41,7 @@ gvSV = V_cross(gv,gvSH);
 % R = \sv\sp : cv : \gv\gp 
 % where 
 % \sv and \sp - are propagation and polarization vectors for incident 
-% wavefield, \gv and \gp - same for scattered
+% wavefield, \gv and 
 
 for i = 1:3
     for j = 1:3
@@ -73,7 +68,7 @@ end
 end
 
 function [c] = V_cross(a, b)
-    % might be quicker than regular cross
+    % Can be quicker than regular cross
 
     c = [a(2).*b(3)-a(3).*b(2)
          a(3).*b(1)-a(1).*b(3)

@@ -32,6 +32,7 @@ iFig = 11;
 nKz = size(KzMin:dKz:KzMax,2); % number of wavenumbers for illumination
 nPhi = size(0:dPhi:phiMax,2); % number of azimuths
 
+% initiation of sensitivity matrices
 TsensTotal.par = zeros(tNumPar,1);
 TsensTotal.ij = zeros(36,1);
 
@@ -41,12 +42,12 @@ path_pattern_save = '../latex/Fig/patterns/';
 parSET = v2struct;
 
 
-% %% radiation patterns in 3D view
+%% radiation patterns in 3D view
 % % produce patterns for PP scattering
 %
 % % wave type incident wave - scattered wave
 WT = 'PP';
-% mkdir(path_pattern_save);
+mkdir(path_pattern_save);
 % for i=1:6
 %     for j=i:6
 %         drawPatternsIJ(WT,i,j,path_pattern_save);
@@ -54,7 +55,12 @@ WT = 'PP';
 % end
 
 
-%% spectral pattern for C_55 P-P wave scattering
+%% PP waves
+parSET.WTCellArray = {'PP'};
+parSET.path_pattern_save = '../latex/Fig/PP_Full/';
+mkdir(parSET.path_pattern_save);
+
+% spectral pattern for C_55 P-P wave scattering (example)
 
 figure(55);
 Cij = zeros(6);
@@ -74,12 +80,9 @@ axis xy tight
 
 fig2 = gcf;
 fig2.PaperPosition = [0 0 10 7];
-print(strcat('FIG/',WT,'_C_55'),'-depsc','-r0')
+print_N_note([parSET.path_pattern_save, WT, '_C_55']);
 
-
-%% PP waves
-parSET.WTCellArray = {'PP'};
-
+%% main resolution plots for PP-scattering
 % Cij parameterization
 resFunc(parSET);
 
@@ -87,72 +90,62 @@ resFunc(parSET);
 parSET.CijFlag = 0;
 resFunc(parSET);
 
-system('rm -rf ../latex/Fig/PP_Full')
-system('mv FIG ../latex/Fig/PP_Full')
-
-
 %% P-SV waves only
-system('mkdir FIG');
-close all
-% Cij parameterization
-
 parSET.WTCellArray = {'PSV'};
-parSET.CijFlag = 1;
-parSET.VsFlag = 1;
-parSET.denFlag=1;
+parSET.path_pattern_save = '../latex/Fig/PSV/';
+close all
 
+% Cij parameterization
+% parSET.CijFlag = 1;
+% parSET.VsFlag = 1;
+% parSET.denFlag = 1;
 resFunc(parSET);
 
+% new parameterization
 parSET.CijFlag = 0;
 resFunc(parSET);
 
-system('rm -rf ../latex/Fig/PSV')
-system('mv FIG ../latex/Fig/PSV')
-system('mkdir FIG');
 
 %% P-SH waves only
-system('mkdir FIG');
 close all
+parSET.WTCellArray = {'PSH'};
+parSET.path_pattern_save = '../latex/Fig/PSH/';
+
 % Cij parameterization
 
-parSET.WTCellArray = {'PSH'};
 parSET.CijFlag = 1;
-
 resFunc(parSET);
 
+% new parameterization
 parSET.CijFlag = 0;
 resFunc(parSET);
-
-system('rm -rf ../latex/Fig/PSH')
-system('mv FIG ../latex/Fig/PSH')
-system('mkdir FIG');
-
 
 %% P-P,SV waves together
 close all
-
-system('mkdir FIG');
 parSET.WTCellArray = {'PP','PSV'};
+parSET.path_pattern_save = '../latex/Fig/PP_PSV/';
 
+% Cij parameterization
 parSET.CijFlag = 1;
+resFunc(parSET);
+
+% new parameterization
+parSET.CijFlag = 0;
 resFunc(parSET);
 
 %% P-P,SV,SH waves together
 close all
-
-system('mkdir FIG');
 parSET.WTCellArray = {'PP','PSV','PSH'};
+parSET.path_pattern_save = '../latex/Fig/PP_PSV_PSH/';
 
+% Cij parameterization
 parSET.CijFlag = 1;
 resFunc(parSET);
 
-system('rm -rf ../latex/Fig/PP_PSV_PSH')
-system('mv FIG ../latex/Fig/PP_PSV_PSH')
-
 %% SV-SV waves
+parSET.path_pattern_save = '../latex/Fig/SVSV/';
 close all
 
-system('mkdir FIG');
 parSET.WTCellArray = {'SVSV'};
 
 parSET.CijFlag = 1;

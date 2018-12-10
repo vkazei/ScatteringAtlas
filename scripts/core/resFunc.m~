@@ -141,7 +141,7 @@ for cellWT = WTCellArray
         end
     end
     hold on
-    %% find similar patterns for the Cij parameters
+    %%
     cNum = 1;
     % determining angles
     for i1=1:6
@@ -209,29 +209,31 @@ for cellWT = WTCellArray
     print_N_note([path_pattern_save,WT,'density'])
     
     
-%     %% SVD analysis for "time domain"
-%           
-%     fig2=figure(iFig);
-%     superSens.(WT) = reshape(TsensAll.(WT),tNumPar,nPhi*nKz);
-%     [~,S.(WT),V.(WT)] = svd(superSens.(WT)','econ');
-%     TsensTotal.par = [TsensTotal.par superSens.(WT)];
-%     
-%     subplot(1,2,1);
-%     
-%     imagesc(log10(S.(WT)(1:min(tNumPar,nKz*nPhi),1:min(tNumPar,nKz*nPhi))/max(max(S.(WT)))));
-%     caxis ([-2 0])
-%     title(strcat('New param, log_{10}(singular values), ',WT));
-%     colormap('parula');
-%     colorbar
-%     
-%     subplot(1,2,2);
-%     
-%     imagesc(V.(WT));
-%     caxis ([-1 1])
-%     title(strcat('Singular vectors, ',WT));
-%     colormap(mycmap);
-%     colorbar
-%     iFig = iFig+1;
+    %% SVD analysis for "time domain"
+    
+    
+    
+    fig2=figure(iFig);
+    superSens.(WT) = reshape(TsensAll.(WT),tNumPar,nPhi*nKz);
+    [~,S.(WT),V.(WT)] = svd(superSens.(WT)','econ');
+    TsensTotal.par = [TsensTotal.par superSens.(WT)];
+    
+    subplot(1,2,1);
+    
+    imagesc(log10(S.(WT)(1:min(tNumPar,nKz*nPhi),1:min(tNumPar,nKz*nPhi))/max(max(S.(WT)))));
+    caxis ([-2 0])
+    title(strcat('New param, log_{10}(singular values), ',WT));
+    colormap('parula');
+    colorbar
+    
+    subplot(1,2,2);
+    
+    imagesc(V.(WT));
+    caxis ([-1 1])
+    title(strcat('Singular vectors, ',WT));
+    colormap(mycmap);
+    colorbar
+    iFig = iFig+1;
     %%
     
     
@@ -272,9 +274,32 @@ for cellWT = WTCellArray
     %[Uij.(WT),Sij.(WT),Vij.(WT)] = svd(superSensCij.(WT)');
     [~,Sij.(WT),Vij.(WT)] = svd(superSensCij.(WT)','econ');
     TsensTotal.ij = [TsensTotal.ij superSensCij.(WT)];
-     
+    %
+    % subplot(2,2,3);
+    %
+    % imagesc(log10(Sij.(WT)(1:21,1:21)/max(max(Sij.(WT)))));
+    % caxis ([-15 0])
+    % title(strcat('C_{ij}, log_{10}(singular values), ',WT));
+    % colormap('parula');
+    % colorbar
+    %
+    %
+    % subplot(2,2,4);
+    %
+    % imagesc(Vij.(WT)(1:21,1:21));
+    % caxis ([-1 1])
+    % title(strcat('C_{ij}, singular vectors for ',WT));
+    % colormap(mycmap);
+    % colorbar
+    
     iFig = iFig+1;
-  
+    %
+    % fig2 = gcf;
+    % %fig2.PaperPositionMode = 'auto';
+    % fig2.PaperPosition = [0 0 24 8];
+    % print(strcat(path_pattern_save,WT,'_SVD4'),'-dpng','-r0')
+    % %surf(Tsens);
+    % %hold on
     
 end
 

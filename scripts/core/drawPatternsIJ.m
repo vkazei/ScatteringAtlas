@@ -30,9 +30,11 @@ for patType = patternArray
     fig1.PaperSize = [20 10];
     fig1.PaperPosition = [15 5 19 19];
     
-    fprintf('saving figure %s \n',[path_save_pattern_Cij,WT,'_',patType{1}])
+    print_N_note([path_save_pattern_Cij,WT,'_',patType{1}]);
     
-    print(fig1,[path_save_pattern_Cij,WT,'_',patType{1}],'-depsc','-r0')
+%     fprintf('saving figure %s \n',[path_save_pattern_Cij,WT,'_',patType{1}])
+%     
+%     print(fig1,[path_save_pattern_Cij,WT,'_',patType{1}],'-depsc','-r0')
     
 end
 end

@@ -1,15 +1,16 @@
 % compute WT (wavetype) radiation pattern on cijkl as function of sv gv for 3-D
 % WT = 'PP' 'SHSH' 'SVSV'
 function Rp = RsgDenWT(sv,gv,WT)
-
-% example with P-P scattering:
-%
-% WT = 'PP';
-% vertical incidence
 % sv = [0;0;1];
-% scattering along the second (y) axis
 % gv = [0;1;0];
 %
+% Cij = diag([1 1 1 1 1 1]); % mu perturbation
+%
+% cijkl = MS_cij2cijkl(Cij);
+
+regCoeff = 10^(-30);
+Rp = 0;
+rx90 = 0;%rotx(90);
 
 %% compute polarization vectors
 
@@ -29,7 +30,7 @@ gvSH = V_cross(gv,ez);
 gvSH = (gvSH + regCoeff*rx90*gv)/(norm(gvSH)+regCoeff);
 gvSV = V_cross(gv,gvSH);
 
-%%
+%% 
 
 if strcmp(WT,'PP')
     Rp = Rp + sv'*gv;
@@ -42,6 +43,11 @@ elseif strcmp(WT,'PSH')
 elseif strcmp(WT,'PSV')
     Rp = Rp + sv'*gvSV;
 elseif strcmp(WT,'SVSH')
+    svSH = V_cross(sv,ez);
+    svSH = (svSH + regCoeff*rx90*sv)/(norm(svSH)+regCoeff);
+    svSV = V_cross(sv,svSH);
+    gvSH = V_cross(gv,ez);
+    gvSH = (gvSH + regCoeff*rx90*gv)/(norm(gvSH)+regCoeff);
     Rp = Rp + svSV'*gvSH;
 end
 
