@@ -218,13 +218,5 @@ ylim([-1.15 1.15])
 zlim([-1.15 1.15])
 
 %% axis tight
-fig1 = gcf;
-fig1.PaperUnits = 'inches';
-fig1.PaperSize = [20 10];
-fig1.PaperPosition = [15 5 19 19];
-
-
-
-print(fig1,['patterns/',WT,'_',patternType],'-depsc','-r0')
 
 end

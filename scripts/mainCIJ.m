@@ -1,88 +1,88 @@
-%% This is the main script that should produce all the pictures for the paper and moves them
+%% This is the main script producing all the pictures for the paper
+%
 close all
 clearvars
 addpath([pwd '/tools']);
 addpath([pwd '/maple']);
-system('mkdir FIG');
+addpath([pwd '/core']);
+%system('mkdir FIG');
 
-%% radiation patterns in 3D view
-% produce patterns for PP scattering
- WT = 'PP';
-
-for i=1:6
-    for j=i:6
-        drawPatternsIJ(WT,i,j);
-    end
-end
-
-%%
-% define parameters
+%% define parameters
 tNumPar = 10; % total number of parameters that are considered for inversion
 mycmap = myColormap; % standard seismic colormap blue-white-red
 isoKnownFlag = 0; % 1 - exclude isotropic parameters from inversion
 
-SVDthreshArr = [0.1, 3*10^-1]; % 
+SVDthreshArr = [0.1, 3*10^-1]; %
 CijFlag = 1; % 1 = (Cij, rho) parametrization instead of whatever
 
 kappa = 1/sqrt(3); %vp/vs ratio
-VsFlag = 1;
-denFlag=1;
-KzMin = 0*2/sqrt(2);
-KzMax = 2;
-dKz = 0.01;
-phiMax = pi;
-dPhi = pi/72;
-nKz = size(KzMin:dKz:KzMax,2);
-nPhi = size(0:dPhi:phiMax,2);
+VsFlag = 1; % 0 -- pseudo-acoustic approximation is used,
+% 1 -- full set of elastic parmaeters with C_44, C_55, C_66
+denFlag=1;  % 0 -- exclude density from inversion
+% 1 -- density is included
+KzMin = 0*2/sqrt(2); % minimum normalized wavenumber for inversion
+KzMax = 2; % maximum normalized wavenumber (effective angle concept)
+dKz = 0.01; % sampling in wavenumber - smaller numbers refine pictures but reduce performance
+phiMax = pi; % maximum azimuth available
+dPhi = pi/72; % sampling in azimuth
+iFig = 11;
+
+
+%% automatic initiation
+nKz = size(KzMin:dKz:KzMax,2); % number of wavenumbers for illumination
+nPhi = size(0:dPhi:phiMax,2); % number of azimuths
+
+% initiation of sensitivity matrices
 TsensTotal.par = zeros(tNumPar,1);
 TsensTotal.ij = zeros(36,1);
 
-%parInCijTensor=loadFromMapleDen('parInCij.mat',tNumPar-1,CijFlag,VsFlag,denFlag,isoKnownFlag);
-%parInCijTensor = eye(tNumPar);
-
-iFig = 11;
-
-WTCellArray = {'PP'};
-%WTCellArray = {'PP','PSV','SVSV','SHSH','SVSH'};
+path_pattern_save = '../latex/Fig/patterns/';
 
 % collect everything into a structure
 parSET = v2struct;
 
-% cases of full illumination 
 
-% P-P waves only
+%% radiation patterns in 3D view
+% % produce patterns for PP scattering
+%
+% % wave type incident wave - scattered wave
+WT = 'PP';
+mkdir(path_pattern_save);
+for i=1:6
+    for j=i:6
+        drawPatternsIJ(WT,i,j,path_pattern_save);
+    end
+end
 
-%% spectral pattern for C_55
 
-%%  
+%% PP waves
+parSET.WTCellArray = {'PP'};
+parSET.path_pattern_save = '../latex/Fig/PP_Full/';
+mkdir(parSET.path_pattern_save);
+
+% spectral pattern for C_55 P-P wave scattering (example)
+
 figure(55);
 Cij = zeros(6);
 Cij(5,5) = 1;
-    Tsens = simpleRes(Cij, WT, KzMin, KzMax, dKz, phiMax, dPhi, 0);
-    %subaxis(1,1,1,'Spacing',0.25,'Margin',0.3);    
-    imagesc(0:5:180*phiMax/pi,KzMin:dKz:KzMax,Tsens');
-    title('Spectral sensitivity to C_5_5');
-    set(gca,'xtick',[0 180])
-    set(gca,'xticklabel',[0 180])
-    %set(gca,'ytick',[])
-    set(gca,'FontSize',25)
-    
-    
-    ylabel('K_z/k_0');
-    xlabel('Azimuth(^o)');
-    caxis ([-1 1])
-    colormap(mycmap);
-    %colorbar southoutside
-    axis xy tight
-    
-    fig2 = gcf;
-    fig2.PaperPosition = [0 0 10 7];
-    print(strcat('FIG/',WT,'_C_55'),'-depsc','-r0')
-    
+Tsens = simpleRes(Cij, WT, KzMin, KzMax, dKz, phiMax, dPhi, 0);
+imagesc(0:5:180*phiMax/pi,KzMin:dKz:KzMax,Tsens');
+title('Spectral sensitivity to C_5_5');
+set(gca,'xtick',[0 180])
+set(gca,'xticklabel',[0 180])
+set(gca,'FontSize',25)
 
-%% PP waves
+ylabel('K_z/k_0');
+xlabel('Azimuth(^o)');
+caxis ([-1 1])
+colormap(mycmap);
+axis xy tight
 
+fig2 = gcf;
+fig2.PaperPosition = [0 0 10 7];
+print_N_note([parSET.path_pattern_save, WT, '_C_55']);
 
+%% main resolution plots for PP-scattering
 % Cij parameterization
 resFunc(parSET);
 
@@ -90,72 +90,62 @@ resFunc(parSET);
 parSET.CijFlag = 0;
 resFunc(parSET);
 
-system('rm -rf ../latex/Fig/PP_Full')
-system('mv FIG ../latex/Fig/PP_Full')
-
-
 %% P-SV waves only
-system('mkdir FIG');
-close all
-% Cij parameterization
-
 parSET.WTCellArray = {'PSV'};
-parSET.CijFlag = 1;
-parSET.VsFlag = 1;
-parSET.denFlag=1;
+parSET.path_pattern_save = '../latex/Fig/PSV/';
+close all
 
+% Cij parameterization
+parSET.CijFlag = 1;
+% parSET.VsFlag = 1;
+% parSET.denFlag = 1;
 resFunc(parSET);
 
+% new parameterization
 parSET.CijFlag = 0;
 resFunc(parSET);
 
-system('rm -rf ../latex/Fig/PSV')
-system('mv FIG ../latex/Fig/PSV')
-system('mkdir FIG');
 
 %% P-SH waves only
-system('mkdir FIG');
 close all
+parSET.WTCellArray = {'PSH'};
+parSET.path_pattern_save = '../latex/Fig/PSH/';
+
 % Cij parameterization
 
-parSET.WTCellArray = {'PSH'};
 parSET.CijFlag = 1;
-
 resFunc(parSET);
 
+% new parameterization
 parSET.CijFlag = 0;
 resFunc(parSET);
 
-system('rm -rf ../latex/Fig/PSH')
-system('mv FIG ../latex/Fig/PSH')
-system('mkdir FIG');
-
-
-%% P-P,SV waves together
-close all
-
-system('mkdir FIG');
-parSET.WTCellArray = {'PP','PSV'};
-
-parSET.CijFlag = 1;
-resFunc(parSET);
-
-%% P-P,SV,SH waves together
-close all
-
-system('mkdir FIG');
-parSET.WTCellArray = {'PP','PSV','PSH'};
-
-parSET.CijFlag = 1;
-resFunc(parSET);
-
-system('rm -rf ../latex/Fig/PP_PSV_PSH')
-system('mv FIG ../latex/Fig/PP_PSV_PSH')
+% %% P-P,SV waves together
+% close all
+% parSET.WTCellArray = {'PP','PSV'};
+% parSET.path_pattern_save = '../latex/Fig/PP_PSV/';
+% 
+% % Cij parameterization
+% parSET.CijFlag = 1;
+% resFunc(parSET);
+% 
+% % new parameterization
+% parSET.CijFlag = 0;
+% resFunc(parSET);
+% 
+% %% P-P,SV,SH waves together
+% close all
+% parSET.WTCellArray = {'PP','PSV','PSH'};
+% parSET.path_pattern_save = '../latex/Fig/PP_PSV_PSH/';
+% 
+% % Cij parameterization
+% parSET.CijFlag = 1;
+% resFunc(parSET);
 
 %% SV-SV waves
+parSET.path_pattern_save = '../latex/Fig/SVSV/';
 close all
 
-system('mkdir FIG');
 parSET.WTCellArray = {'SVSV'};
 
 parSET.CijFlag = 1;
@@ -164,14 +154,9 @@ resFunc(parSET);
 parSET.CijFlag = 0;
 resFunc(parSET);
 
-
-system('rm -rf ../latex/Fig/SVSV')
-system('mv FIG ../latex/Fig/SVSV')
-
 %% SH-SH waves
 close all
-
-system('mkdir FIG');
+parSET.path_pattern_save = '../latex/Fig/SHSH/';
 parSET.WTCellArray = {'SHSH'};
 
 parSET.CijFlag = 1;
@@ -180,13 +165,9 @@ resFunc(parSET);
 parSET.CijFlag = 0;
 resFunc(parSET);
 
-system('rm -rf ../latex/Fig/SHSH')
-system('mv FIG ../latex/Fig/SHSH')
-
 %% SV-SH waves
 close all
-
-system('mkdir FIG');
+parSET.path_pattern_save = '../latex/Fig/SVSH/';
 parSET.WTCellArray = {'SVSH'};
 
 parSET.CijFlag = 1;
@@ -194,8 +175,5 @@ resFunc(parSET);
 
 parSET.CijFlag = 0;
 resFunc(parSET);
-
-system('rm -rf ../latex/Fig/SVSH')
-system('mv FIG ../latex/Fig/SVSH')
 
 

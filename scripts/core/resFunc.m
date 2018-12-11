@@ -1,18 +1,48 @@
 %% resolution for Cijs
+% this function evaluates spectral sensitivities for all Cij parameters and
+% plots resolution patterns
+%
+% it takes as input the type of parameterization
+% parSET is defined in mainCIJ.m
 
-function res = resFunc(parSET)
+function resFunc(parSET)
 
-%read parameters from structure
+% make folder for pictures if not made yet
+mkdir(parSET.path_pattern_save);
+
+%%read parameters from structure
 v2struct(parSET);
 
+fprintf('\n Starting scattering resolution analysis for');
+disp(parSET.WTCellArray);
+
+% set of parameters to be useed for description of the model
 if CijFlag == 0
+    % parameterization of Oh-Alkhalifah
     parNameArray = {'\rho', 'V_p', 'V_s', '\epsilon_1', '\epsilon_d', '\eta_1', '\eta_d', '\delta_3', '\gamma_1', '\gamma_d'};
 else
+    % parameterization with elastic constants
     parNameArray = {'\rho', 'C_{11}', 'C_{22}', 'C_{33}', 'C_{12}', 'C_{13}', 'C_{23}', 'C_{44}', 'C_{55}', 'C_{66}'};
-end;
+end
 
-%partial derivatives computed in Maple
-parInCijTensor=loadFromMapleDen('parInCij.mat',tNumPar-1,CijFlag,VsFlag,denFlag,isoKnownFlag);
+disp('Parameterization');
+disp(parNameArray);
+
+%partial derivatives computed in Maple are loaded
+% number of Cij parameters
+par_maple.NCijPar = tNumPar-1;
+%CijFlag = 1 - parameterize by Cij 
+par_maple.CijFlag = CijFlag;
+%drop out Vs related parameters = 0
+par_maple.VsFlag = VsFlag;
+%include density = 1
+par_maple.denFlag = denFlag;
+% fix isotropic parameters = 1
+par_maple.isoKnownFlag = isoKnownFlag;
+% save pictures to the same location
+par_maple.path_pattern_save = parSET.path_pattern_save;
+
+parInCijTensor=loadFromMapleDen('parInCij.mat', par_maple);
 
 iFig = 11;
 
@@ -22,7 +52,7 @@ for cellWT = WTCellArray
     % item is a 1x1 cell array, not the actual string contents.
     % item{1} is the string contents.
     %disp(item{1})
-    WT = cellWT{1}
+    WT = cellWT{1};
     
     %%
     % for normalization
@@ -32,7 +62,7 @@ for cellWT = WTCellArray
     % sensitivity array
     TsensAll.(WT) = zeros(tNumPar,nPhi,nKz);
     
-    % evaluating the sensitivities
+    disp('evaluating the sensitivities for orthorhombic parameters');
     for iPar=1:tNumPar
         % partial derivatives for parameter number iPar
         Cij(:,:) = parInCijTensor(iPar,:,:);
@@ -64,7 +94,7 @@ for cellWT = WTCellArray
         title(parNameArray{iPar});
     end;
     
-    %% drawing specials
+    %% find similar patterns and put them into the frames of the same color
     colorArr = {'g','c','m','y','r','b','k','w'};
     cNum=1;
     for iPar=1:tNumPar
@@ -74,6 +104,8 @@ for cellWT = WTCellArray
         Tsens1(:,:) = TsensAll.(WT)(iPar,:,:);
         for jPar = iPar+1:tNumPar
             Tsens2(:,:) = TsensAll.(WT)(jPar,:,:);
+            % check the angle between patterns as linear spaces and that
+            % they are non-zero
             if (subspace(Tsens1(:),Tsens2(:))<pi/18) ...
                     && norm(Tsens1)*norm(Tsens2) > 10^-5
                 
@@ -98,7 +130,7 @@ for cellWT = WTCellArray
     
     fig1 = gcf;
     fig1.PaperPosition = [0 0 10 1];
-    print(strcat('FIG/',WT,'nPar',num2str(CijFlag)),'-depsc','-r0')
+    print(strcat(path_pattern_save,WT,'nPar',num2str(CijFlag)),'-depsc','-r0')
     %%
     
     %perturbing Cij parameters
@@ -106,6 +138,7 @@ for cellWT = WTCellArray
     Cij = zeros(6);
     TsensCijAll.(WT) = zeros(6,6,nPhi,nKz);
     fig2 = figure(2);
+    disp('evaluating sensitivities for all 21 Cij parameters');
     for i = 1:6
         for j = i:6
             Cij = zeros(6);
@@ -127,7 +160,7 @@ for cellWT = WTCellArray
         end
     end
     hold on
-%%   
+    %% find similar patterns for the Cij parameters
     cNum = 1;
     % determining angles
     for i1=1:6
@@ -136,20 +169,20 @@ for cellWT = WTCellArray
                 for j2=i2:6
                     Tsens1(:,:) = TsensCijAll.(WT)(i1,j1,:,:);
                     Tsens2(:,:) = TsensCijAll.(WT)(i2,j2,:,:);
-                    if (subspace(Tsens1(:),Tsens2(:))<pi/18) ... 
-                        && ~isequal([i1 j1],[i2 j2]) && ~isequal([i1 j1],[j2 i2]) ...
-                        && norm(Tsens1)*norm(Tsens2) > 10^-10
+                    if (subspace(Tsens1(:),Tsens2(:))<pi/18) ...
+                            && ~isequal([i1 j1],[i2 j2]) && ~isequal([i1 j1],[j2 i2]) ...
+                            && norm(Tsens1)*norm(Tsens2) > 10^-10
                         
                         colorVec = colorArr{cNum};
                         
                         subaxis(6,6,(i1-1)*6+j1,'Spacing',0.01,'Margin',0.01);
-                        ax = gca;           
+                        ax = gca;
                         ax.XColor = colorVec;
                         ax.YColor = colorVec;
                         ax.LineWidth = 4;
                         
                         subaxis(6,6,(i2-1)*6+j2,'Spacing',0.01,'Margin',0.01);
-                        ax = gca;           
+                        ax = gca;
                         ax.XColor = colorVec;
                         ax.YColor = colorVec;
                         ax.LineWidth = 4;
@@ -160,19 +193,19 @@ for cellWT = WTCellArray
             end
         end
     end
-%%  
-                        
+    %%
+    
     
     fig2 = gcf;
     fig2.PaperPositionMode = 'auto';
-    print(strcat('FIG/',WT,'Cij'),'-depsc','-r0')
+    print_N_note([path_pattern_save,WT,'Cij'])
     
     %% density picture separate
     
     Cij = zeros(6);
     % setting denFlag to 1
     Tsens = simpleRes(Cij, WT, KzMin, KzMax, dKz, phiMax, dPhi, 1);
-    subaxis(6,6,26,'Spacing',0.001,'Margin',0.01);    
+    subaxis(6,6,26,'Spacing',0.001,'Margin',0.01);
     imagesc(0:5:180*phiMax/pi,KzMin:dKz:KzMax,Tsens');
     title Density
     set(gca,'xtick',[0 180])
@@ -192,35 +225,32 @@ for cellWT = WTCellArray
     
     fig2 = gcf;
     fig2.PaperPositionMode = 'auto';
-    print(strcat('FIG/',WT,'density'),'-depsc','-r0')
+    print_N_note([path_pattern_save,WT,'density'])
     
     
-    
-    %% SVD analysis for "time domain"
-    
-    
-    
-    fig2=figure(iFig)
+%     %% SVD analysis for "time domain"
+%           
+%     fig2=figure(iFig);
     superSens.(WT) = reshape(TsensAll.(WT),tNumPar,nPhi*nKz);
-    [~,S.(WT),V.(WT)] = svd(superSens.(WT)','econ');
-    TsensTotal.par = [TsensTotal.par superSens.(WT)];
-    
-    subplot(1,2,1);
-    
-    imagesc(log10(S.(WT)(1:min(tNumPar,nKz*nPhi),1:min(tNumPar,nKz*nPhi))/max(max(S.(WT)))));
-    caxis ([-2 0])
-    title(strcat('New param, log_{10}(singular values), ',WT));
-    colormap('parula');
-    colorbar
-    
-    subplot(1,2,2);
-    
-    imagesc(V.(WT));
-    caxis ([-1 1])
-    title(strcat('Singular vectors, ',WT));
-    colormap(mycmap);
-    colorbar
-    iFig = iFig+1;
+     [~,S.(WT),V.(WT)] = svd(superSens.(WT)','econ');
+TsensTotal.par = [TsensTotal.par superSens.(WT)];
+%     
+%     subplot(1,2,1);
+%     
+%     imagesc(log10(S.(WT)(1:min(tNumPar,nKz*nPhi),1:min(tNumPar,nKz*nPhi))/max(max(S.(WT)))));
+%     caxis ([-2 0])
+%     title(strcat('New param, log_{10}(singular values), ',WT));
+%     colormap('parula');
+%     colorbar
+%     
+%     subplot(1,2,2);
+%     
+%     imagesc(V.(WT));
+%     caxis ([-1 1])
+%     title(strcat('Singular vectors, ',WT));
+%     colormap(mycmap);
+%     colorbar
+%     iFig = iFig+1;
     %%
     
     
@@ -253,40 +283,17 @@ for cellWT = WTCellArray
         
         fig2 = gcf;
         fig2.PaperPosition = [0 0 10 10];
-        print(strcat('FIG/',WT,'_resMatrix',num2str(CijFlag),'sTol',num2str(SVDthresh*100)),'-depsc2','-r0');
-    end;
+        print(strcat(path_pattern_save,WT,'_resMatrix',num2str(CijFlag),'sTol',num2str(SVDthresh*100)),'-depsc2','-r0');
+    end
     
     %%
     superSensCij.(WT) = reshape(TsensCijAll.(WT),36,nPhi*nKz);
     %[Uij.(WT),Sij.(WT),Vij.(WT)] = svd(superSensCij.(WT)');
     [~,Sij.(WT),Vij.(WT)] = svd(superSensCij.(WT)','econ');
     TsensTotal.ij = [TsensTotal.ij superSensCij.(WT)];
-    %
-    % subplot(2,2,3);
-    %
-    % imagesc(log10(Sij.(WT)(1:21,1:21)/max(max(Sij.(WT)))));
-    % caxis ([-15 0])
-    % title(strcat('C_{ij}, log_{10}(singular values), ',WT));
-    % colormap('parula');
-    % colorbar
-    %
-    %
-    % subplot(2,2,4);
-    %
-    % imagesc(Vij.(WT)(1:21,1:21));
-    % caxis ([-1 1])
-    % title(strcat('C_{ij}, singular vectors for ',WT));
-    % colormap(mycmap);
-    % colorbar
-    
+     
     iFig = iFig+1;
-    %
-    % fig2 = gcf;
-    % %fig2.PaperPositionMode = 'auto';
-    % fig2.PaperPosition = [0 0 24 8];
-    % print(strcat('FIG/',WT,'_SVD4'),'-dpng','-r0')
-    % %surf(Tsens);
-    % %hold on
+  
     
 end
 
@@ -324,7 +331,7 @@ for SVDthresh = SVDthreshArr
     
     fig2 = gcf;
     fig2.PaperPosition = [0 0 10 10];
-    print(strcat('FIG/resMatrix',num2str(SVDthresh*100),'Total',num2str(CijFlag)),'-depsc2','-r0');
+    print(strcat(path_pattern_save,'resMatrix',num2str(SVDthresh*100),'Total',num2str(CijFlag)),'-depsc2','-r0');
     
 end
 
@@ -350,21 +357,16 @@ if CijFlag
     cijSVD = STdiag;
     save(strcat('cijSVD',WT,'.mat'),'cijSVD');
 else
-        load(strcat('cijSVD',WT,'.mat'));
-        semilogy(cijSVD,'r','LineWidth',4);
+    load(strcat('cijSVD',WT,'.mat'));
+    semilogy(cijSVD,'r','LineWidth',4);
     
-end;
-% SVDthreshPlot = SVDthreshArr(1)*ones(size(cijSVD));
-% semilogy(SVDthreshPlot,'g','LineWidth',3);
-% SVDthreshPlot = SVDthreshArr(2)*ones(size(cijSVD));
-% semilogy(SVDthreshPlot,'k','LineWidth',3);
+end
+
 fig2 = gcf;
 fig2.PaperPosition = [0 0 10 10];
-%print(strcat('FIG/TotalSingVal',num2str(CijFlag)),'-depsc2','-r0')
+print_N_note([path_pattern_save,'TotalSingVal']);
 
-print('FIG/TotalSingVal','-depsc2','-r0')
 %%
-%subplot(2,1,2);
 figure(iFig);
 iFig = iFig+1;
 
@@ -388,49 +390,8 @@ colorbar
 
 fig2 = gcf;
 fig2.PaperPosition = [0 0 10 10];
-print(strcat('FIG/TotalSingVec',num2str(CijFlag)),'-depsc2','-r0')
 
-% subplot(2,2,3);
-%
-% imagesc(log10(STotalCij(1:21,1:21)/max(max(STotalCij))));
-% caxis ([-13 0])
-% title(strcat('C_{ij}, log_{10}(singular values)'));
-% colormap('parula');
-% colorbar
-%
-%
-% subplot(2,2,4);
-%
-% imagesc(VTotalCij(1:21,1:21));
-% caxis ([-1 1])
-% title(strcat('C_{ij}, singular vectors together'));
-% colormap(mycmap);
-% colorbar
-%
-% fig1 = gcf;
-% fig1.PaperPositionMode = 'auto';
-% print(strcat('FIG/SVD_AllTogether'),'-dpng','-r0')
+print_N_note([path_pattern_save,'TotalSingVec',num2str(CijFlag)]);
 
-for SVDthresh = SVDthreshArr
-    
-    nParRes(TsensAll.(WT),SVDthresh);
-    %nParResAngle(TsensAll.(WT),SVDthresh,parSET);
-    if strcmp(WT,'PSV') || strcmp(WT,'PSV')
-        nParResAnglePS(TsensAll.(WT),SVDthresh,parSET);
-    elseif strcmp(WT,'SVSV') || strcmp(WT,'SVSH') || strcmp(WT,'SHSH')
-        disp('Angular resolution for incident S waves is not yet implemented');
-    elseif strcmp(WT,'PP')
-        nParResAngle(TsensAll.(WT),SVDthresh,parSET);
-    end;
-    
-end;
-
-%nParRes(TsensAll.PP,0.01);
-% nParRes2(TsensAll,0.1);
-% nParRes2(TsensAll,0.01);
-% nParRes3(TsensAll,0.1);
-% nParRes3(TsensAll,0.01);
-
-res = 0;
 end
 
