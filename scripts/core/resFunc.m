@@ -364,7 +364,7 @@ end
 
 fig2 = gcf;
 fig2.PaperPosition = [0 0 10 10];
-print_N_note([path_pattern_save,'TotalSingVal',num2str(CijFlag)]);
+print_N_note([path_pattern_save,'TotalSingVal']);
 
 %%
 figure(iFig);

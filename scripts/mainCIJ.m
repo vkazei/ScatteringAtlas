@@ -48,11 +48,11 @@ parSET = v2struct;
 % % wave type incident wave - scattered wave
 WT = 'PP';
 mkdir(path_pattern_save);
-% for i=1:6
-%     for j=i:6
-%         drawPatternsIJ(WT,i,j,path_pattern_save);
-%     end
-% end
+for i=1:6
+    for j=i:6
+        drawPatternsIJ(WT,i,j,path_pattern_save);
+    end
+end
 
 
 %% PP waves
@@ -120,27 +120,27 @@ resFunc(parSET);
 parSET.CijFlag = 0;
 resFunc(parSET);
 
-%% P-P,SV waves together
-close all
-parSET.WTCellArray = {'PP','PSV'};
-parSET.path_pattern_save = '../latex/Fig/PP_PSV/';
-
-% Cij parameterization
-parSET.CijFlag = 1;
-resFunc(parSET);
-
-% new parameterization
-parSET.CijFlag = 0;
-resFunc(parSET);
-
-%% P-P,SV,SH waves together
-close all
-parSET.WTCellArray = {'PP','PSV','PSH'};
-parSET.path_pattern_save = '../latex/Fig/PP_PSV_PSH/';
-
-% Cij parameterization
-parSET.CijFlag = 1;
-resFunc(parSET);
+% %% P-P,SV waves together
+% close all
+% parSET.WTCellArray = {'PP','PSV'};
+% parSET.path_pattern_save = '../latex/Fig/PP_PSV/';
+% 
+% % Cij parameterization
+% parSET.CijFlag = 1;
+% resFunc(parSET);
+% 
+% % new parameterization
+% parSET.CijFlag = 0;
+% resFunc(parSET);
+% 
+% %% P-P,SV,SH waves together
+% close all
+% parSET.WTCellArray = {'PP','PSV','PSH'};
+% parSET.path_pattern_save = '../latex/Fig/PP_PSV_PSH/';
+% 
+% % Cij parameterization
+% parSET.CijFlag = 1;
+% resFunc(parSET);
 
 %% SV-SV waves
 parSET.path_pattern_save = '../latex/Fig/SVSV/';
@@ -153,10 +153,6 @@ resFunc(parSET);
 
 parSET.CijFlag = 0;
 resFunc(parSET);
-
-
-system('rm -rf ../latex/Fig/SVSV')
-system('mv FIG ../latex/Fig/SVSV')
 
 %% SH-SH waves
 close all

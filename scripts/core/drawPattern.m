@@ -70,7 +70,7 @@ function drawPattern(WT,Cij,denFlag,patternType)
 %                 %sv = [1/2 0  sqrt(3)/2];
 %                 sv = [0.5; 0.5; 0.5^0.5];
 
-n=21;
+n=101;
 %
 %
 % Cij = zeros(6);
