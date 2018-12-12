@@ -1,5 +1,5 @@
 \subsection{Far-field plane-wave scattering}
-Here, we show that the radiation patterns simply represent different types of scattered wavefields for a point scatterer 
+Radiation patterns simply represent different types of scattered wavefields for a point scatterer 
 when the far-field or plane-wave approximation is applied to \eqrf{hudson} below. While the derivation is well-known, we return to it in order to generalize the radiation patterns to arbitrary scatterers that 
 satisfy \eqrf{hudson}. First, we utilize the approximation from the receiver 
 side of \eqrf{hudson}, since it includes Green's tensors and not incident 
@@ -13,9 +13,24 @@ The frequency-domain Born approximation for the scattered wavefield $\delta \Uv$
 \delta c_{kjpq}(\xv) \pd{U^0_p}{x_q}  \pd{}{x_j})G_{ik}(\xv_g, \xv) \d \xv,
 \eeq
 where $\omega$ is the angular frequency, $\xv_s$ and $\xv_g$ are the coordinates of the source and receiver, respectively, and $G_{ik}(\xv_g, \xv)$ is the Green's tensor for the background medium. Integration is performed over the volume of the perturbation $\delta \mv = (\delta \rho, \delta c_{ijpq})$, where $\mv$ is the vector of unperturbed parameters. 
-
+We can vectorize the equation~\eqref{eq:hudson},
+\beq \label{eq:hudsonVec}
+\delta \Uv (\xv_s,\xv_\gv,\omega) = \intyV  (\omega^2 \delta \rho(\xv) \Uv^0 (\xv) \cdot\Gv (\xv) - 
+\nabla \Gv (\xv) : \delta \cv(\xv) : (\nabla \Uv^0 (\xv))   \d \xv,
+\eeq
+which already gives us some insights into scattering. For example scattering on density perturbation is determined by the kernel 
+\beq
+\omega^2 \delta \rho(\xv) \Uv^0 (\xv) \cdot\Gv (\xv),
+\eeq 
+and hence depends only on the amplitudes and polarization of incident $\Uv^0$ and scattered $\Gv$ wavefields. For instance if we consider scattering of $SH$ waves in a vertical plane on density the amplitude of the scattered wavefield will be constant \figref{SHSH/SHSHCij}. At the same time scattering on perturbations of elastic constants $C_{ij}$ driven by the kernel
+\beq
+\nabla \Gv (\xv) : \delta \cv(\xv) : (\nabla \Uv^0 (\xv))
+\eeq
+can as well depend on the propagation directions
+of incident and scattered waves, which are extracted by the gradient $\nabla$ operator.
+ 
 \subsubsection{Wavefields scattered by perturbation}
-The Green's tensor $G_{ik}$ in the Born approximation~\eqref{eq:hudson} physically 
+The Green's tensor $G_{ik}$ in the Born approximation~\eqref{eq:hudsonVec} physically 
 takes care of the propagation of a scattered wavefield from the perturbation to the 
 receiver.
 The far-field approximation for the Green's tensor \citep[e.g.,][]{snieder2002} in a homogeneous, isotropic background 

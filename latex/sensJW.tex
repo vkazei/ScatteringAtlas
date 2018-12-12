@@ -1,21 +1,12 @@
 \subsection{Hierarchical parameterization}
 
-An FWI-suitable parameterization of orthorhombic media should describe isotropic media using only three non-zero parameters -- $V_p,V_s,$ and $\rho$. 
+In order to obtain more insights into scattering by orthorhombic parameters and look at some scattering features for VTI and isotropic parameters we will use parameterization from \citep{juwon2016}. The parameterization splits ten orthorhombic parameters into three groups: isotropic, VTI, orthorhombic, so that if VTI and orthorhombic parameters are zero, the medium is isotropic and if orthorhombic parameters are zero, then the medium is VTI.  
+Isotropic media can be described by three non-zero parameters -- $V_p,V_s,$ and $\rho$. These are standard and include velocities of P and S waves and density.
 
-By adding three more parameters -- $\varepsilon_1, \eta_1,$ and $\gamma_1$ -- we can describe VTI media.
-
-\todo{
-Parameterization suggested by all and Alkhalifah features this separation of parameters into three groups. First group specifies parameters in isotropic medium. This parameters are standard and include PV velocity and S vein velocity and density. Second group brings in vertically transversely isotropic parameters. This group includes widespread in exploration and seismic parameterization by Alkhalifah and 20. Namely it includes Epsilon, gamma and eta. In this parameterization Epsilon describes the elliptic part of of anisotropy of P waves. Eta either corrects the anisotropy of P waves completely defeat their kinetics kinematics. The gamma parameter describes the anisotropy of SH waves. SV waves are thematically sensitive to the same parameters as P waves.
-}
+By adding three more parameters -- $\varepsilon_1, \eta_1,$ and $\gamma_1$ -- we can describe VTI media. This group includes widespread in exploration seismic parameterization by \cite{alkhalifah2000}. In this parameterization $\epsilon$ describes the elliptic part of of anisotropy of $P$ waves. Parameter $\eta$ corrects the anisotropy of $P$ waves to completely describe their kinematics. The $\gamma$ parameter describes the anisotropy of horizontally polarized $SH$ waves. In VTI medium $SH$ waves show elliptic anisotropy and therefore one parameter is sufficient to describe their kinematics. Hence we work with orthorhombic media we add $1$ indexes to reflect that this parameters belong to the $x_1-x_3$ plane and the other vertical plane of symmetry $x_2-x_3$ may have different VTI behavior. 
 
 
-
-
-
-
-
-Finally, four additional parameters -- $\varepsilon_d, \eta_d, \gamma_d$, and $\delta_3$ -- allow us to go from VTI to orthorhombic anisotropy. This kind of parameterization is presented in \cite{juwon2016}.
-
+Finally, four additional parameters -- $\varepsilon_d, \eta_d, \gamma_d$, and $\delta_3$ -- allow us to go from VTI to orthorhombic anisotropy. As we mentioned before there are two vertical planes of symmetry in orthorhombic medium. Wave propagation in the first plane $x_1-x_3$ is fully defined by the above mentioned parameters, the plane $x_2-x_3$, on the other hand, can have different parameters. Say those are $\varepsilon_2, \eta_2,$ and $\gamma_2$, we can introduce the deviation parameters $\varepsilon_d = \varepsilon_2 - \varepsilon_1, \eta_d = \eta_2 - \eta_1, \gamma_d = \gamma_2 - \gamma_1$ that will tell us how different are the two vertical planes of symmetry of orthorhombic medium are. Additional parameter $\delta_3$ determines the anellipticity of $P$ wave anisotropy in the $x_1-x_2$ plane \citep{juwon2016}. Explicit equations that can be used to get elastic stiffness matrix elements from hierarchical parameters can be found in Glossary. 
 
 Radiation patterns and the spectral sensitivities for any parameterization can be obtained through variable substitution to $C_{ij},\rho$ parameterization. 
 \beq \label{eq:JacoCij}
@@ -64,14 +55,14 @@ The Jacobian $\pd{(\nmz{C}_{ij},\nmz{\rho})}{\mv}$ for the hierarchical paramete
 \end{array}\right)
 \eeq
 %
-We also present the partial derivatives of the $C_{ij}$ parameters in a graph (\figref{PP_Full/parDerivCij}) to illustrate the perturbations in the elastic parameters that are introduced by perturbations from a single hierarchical parameter. To simplify formulas and focus on geometric properties of scattering we normalize units in the following way -- velocities are normalized by the background $\v_{p0}$, densities by $\rho_0$, elastic constants by $\rho_0 \v_p^2$. The normalized quantities are distinguished by the dash, e.g.
+We also present the partial derivatives of the $C_{ij}$ parameters in a graph (\figref{PP_Full/parDerivCij}) to illustrate the perturbations in the elastic parameters that are introduced by perturbations from a single hierarchical parameter. For example, perturbing $V_p$ is equivalent to simultaneously perturbing all $C_{ij}$ with $i \leq 3$ and $j \leq 3$ (see the second column in \eqrf{Jaco}); and perturbing $\gamma_1$ is equivalent to simultaneously perturbing $C_{12}$ and $C_{66}$ with different values of opposite sign (see the ninth column in the matrix in \eqrf{Jaco}). To simplify formulas and focus on geometric properties of scattering we normalize units in the following way -- velocities are normalized by the background $\v_{p0}$, densities by $\rho_0$, elastic constants by $\rho_0 \v_p^2$. The normalized quantities are distinguished by the dash, e.g.
 \beq
 \nmz{\v}_p \equiv \frac{\v_p}{\v_{p0}}, 
 \nmz{\v}_s \equiv \frac{\v_s}{\v_{p0}},
 \nmz{C}_{55} \equiv \frac{C_{55}}{\rho\v^2_{p0}}. 
 \eeq  
 
-\plot{PP_Full/parDerivCij}{width=\columnwidth}{Partial derivatives of $C_{ij}$ parameters w.r.t. hierarchical parameterization parameters for $V_{0s}/V_{0p}=\varkappa=\frac{1}{\sqrt{3}}$.}
+\plot{PP_Full/parDerivCij}{width=\columnwidth}{Partial derivatives of $C_{ij}$ parameters w.r.t. hierarchical parameterization parameters. Throughout the paper, the Poisson ratio is assumed to be equal to 0.25 ($V_{0s}/V_{0p}=\varkappa=\frac{1}{\sqrt{3}}$), which in fact affects only the derivatives w.r.t. density.}
 
 
 An advanced choice of parameterization will give some insights that are not straightforward from the $C_{ij}$ parameterization. For example, parameters contributing to $V_p$ provide zero sensitivity to $S$-wave scattering. Being a combination of nine $C_{ij}$ parameters, $V_p$ is hardly discoverable in the original parameterization. Thus, our knowledge is still limited by the choice of parameterization, as we cannot visually identify coupling among three or more parameters.

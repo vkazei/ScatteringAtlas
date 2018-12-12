@@ -92,7 +92,7 @@ for cellWT = WTCellArray
         TsensAll.(WT)(iPar,:,:)=Tsens;
         % title is the respective parameter
         title(parNameArray{iPar});
-    end;
+    end
     
     %% find similar patterns and put them into the frames of the same color
     colorArr = {'g','c','m','y','r','b','k','w'};

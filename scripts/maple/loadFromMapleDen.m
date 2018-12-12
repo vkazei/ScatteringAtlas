@@ -78,7 +78,8 @@ for iPar=1:NCijPar+1
     set(gca,'xticklabel',[])
     set(gca,'ytick',[])
     set(gca,'yticklabel',[])
-    %title(parNameArray{iPar});
+    title(parNameArray{iPar});
+    set(gca,'FontSize',20);
     caxis([-2 2]);
     parInCijTensor(iPar,:,:) = iParMatrix(:,:);
 end
