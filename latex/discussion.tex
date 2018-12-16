@@ -1,31 +1,32 @@
 \section{Discussion}
-We first discuss the domain of applicability of the approach and then explain where the results of this work could be useful in inversion setups for anisotropic elastic parameters.
+Spectral sensitivity patterns fully characterize the Born linearized reflection of body waves on different scatterers and can be useful for inversion and acquisition design. Reflected body waves are the main source of information about deep targets inside the earth, such as oil reservoirs or the inner and outer core boundaries, though they are not the only waves that can be inverted in FWI.
+Also, Born scattering may be successfully applied in amplitude-versus-offset techniques for the characterization of oil reservoirs \citep{beretta2002,shaw2006,boer2018} and in inversion of the anisotropic properties of the inner core \citep{vidale2000}. We note, however, that it is not always a valid approximation. 
+%
+In the following, we discuss how the scattering of other wave types can be accessed similarly to body waves, and then explain where the results of this work could be useful in the design of an anisotropic elastic FWI.
 
-\subsection{Limitations}
-Indeed, we discussed only linearized scattering of body waves. Full-waveform inversion on the other hand includes full set of wave phenomena. Therefore nonlinearity surface, guided waves and multiples are left out of the scope. Fortunately, in many cases full-waveform inversion is driven by reflected energy. This happens when we try to retrieve properties of a deep oil reservoir or when we look at the events from core mental boundary or or inner or outer core boundary. In fact born scattering be successfully applied in amplitude versus offset characterization techniques of oil reserve doors as well as in version 4 the anisotropic properties of inner core boundary citation.
+\subsection{Beyond body waves}
+FWI optimizes the model to fit the full set of observed waveforms. We discussed only linearized scattering of body waves. Therefore, the nonlinear effects in wave propagation due to multiple or distributed perturbations in the background model, such as multiscattering, are left out of the scope of this paper. The linear scattering of multiples and surface or guided waves are also out of the scope of our analysis. Surface waves can be accessed similarly to body waves if the scattering functions are modified accordingly. Scattering functions for surface waves are sometimes called interaction matrices and can be found in \citep{snieder1986}, and an analysis of their numerical kernels can be found in \citep{sieminski2007}. If they occur in the background medium, multiples can enhance the illumination of certain wavenumbers in the spectrum of the model perturbation, leading to sinusoidal artifacts in FWI \citep{kazei2013spectral,kazei2015seg}. If the multiples are of a certain order and separated from other waves, then they can actually improve the resolution of the migration \citep{schuster2014}. Multiple scattered waves may also enhance the illumination of deeper parts of the model in FWI \citep{alkhalifah2014}.
+%
 
+%
+%FWI is an approach to fit observed seismic data. At each iteration the problem is linearized, yet the full process is non-linear as at different iterations different models are used to linearize the problem. FWI inverts full observed seismograms and hence surface waves, guided waves and multiples affect the inversion process. On the other hand, scattering radiation patterns describe scattering of plane body waves in the Born approximation. This discrepancy between radiation patterns and FWI leads us to the domain of applicability of our resolution analysis:
 
-
-For surface wave analysis the reader is referred to the work by Sneed or where similar scattering functions are derived for that case. The role of multiples in full-waveform inversion can be attributed to extra wavenumber coverage citation Alkhalifah. Also multiples can cause strong artifacts at certain spatial frequencies citation Kazei or they can increase the resolution of migration process citation Jerry.
-
-
-
-
-
-
-
-
-
-Full-waveform inversion is an approach to fit observed seismic data. At each iteration the problem is linearized, yet the full process is non-linear as at different iterations different models are used to linearize the problem. FWI inverts full observed seismograms and hence surface waves, guided waves and multiples affect the inversion process. On the other hand, scattering radiation patterns describe scattering of plane body waves in the Born approximation. This discrepancy between radiation patterns and FWI leads us to the domain of applicability of our resolution analysis:
- 
-\begin{enumerate}
-  \item Fir 
-\end{enumerate}
-
-Therefore, they can not be used to access t
+\subsection{Possible applications}
+Multiparameter FWI is a challenging problem. The wavenumber illumination concept for 2D \citep{podgornova2018} and 3D \citep{kazei2018} multiparameter FWI gives very important guidelines. In monoparameter FWI, we seek full wavenumber coverage \citep{devaney1984, mora1989, operto2015, alkhalifah2016}. In multiparameter FWI, we need to illuminate each model wavenumber at least as many times as the number of parameters we want to invert for.
+Scattering maps can give an idea of which parameters we are able to distinguish in FWI, depending on the body waves that are available.
+In 2D FWI, if we want to invert N parameters from the medium with single component data, then we must invert at least N frequencies simultaneously. In 3D FWI, only the azimuthal variations can be retrieved from single frequency, single component data. Of course, more parameters can be estimated if constraints are imposed on the spatial variations in the model. The interaction of the regularizations \citep{esser2016, kazei2017c, kalita2018} and the conditioning of the FWI updates \citep{alkhalifah2014, ovcharenko2018} require further investigation.
 
 
-\subsection{Applicability}
-What could our analysis be useful for. First of all it gives an idea of how many parameters can be inverted given and acquisition set up. Second the radiation patterns give us an idea of which parameters are can be inferred.
 
-\todo{\citep{beretta2002}}
+
+
+The choice of parameterization is critical for multiparameter FWI applications \citep{tarantola1986, gholami2013, alkhalifah2014}. Depending on the data that is available in a given setup, different anisotropic parameters may be chosen for inversion. In the case where reflections are inverted, we show that the null space will always limit the inversion results. Therefore, a good choice of parameters would isolate this null space via the parameterization. If the non-scattering combinations are isolated by the chosen parameters, then those parameters can be kept out of the inversion, which should improve the FWI convergence.
+If some parameters from the null space are inverted in FWI, we can expect higher uncertainty in those parameters.
+
+In real datasets, noise and aperture further limit the capabilities of multiparameter FWI \citep{masmoudi2018, oh2018}. In this text, we presented graphs of the singular values, which can be used to limit the number of parameters inverted.
+Perturbations in other parameters of the same amplitude as the true model perturbation will lead to the wavefields having the same amplitude as noise. Therefore, one intuitive method of choosing the number of parameters $N$ is to take the maximum value of $N$ that satisfies the inequality $|S_{1}/S_{N}| > SNR$, where $S_{1}$ is the first and largest singular value, and $|S_{i+1}|<|S_{i}|$.
+
+We note that SNR should be calculated for the FWI gradient and not the data itself. Ideally, the gap $S_{N}-S_{N+1}$ should be maximized to stabilize the inversion \citep{cheverda1995, kazei2018}.  
+Depending on the illumination conditions, the number of parameters that are above a certain singular value threshold can vary. In the case of P waves, we previously presented the number of invertible parameters depending on the acquisition limitations \citep{kazei2018}. The optimal number of parameters for other types of scattering is a topic for future research.
+
+In summary, this atlas of first-order scattered data sensitivity to different scales of the parameters involved in describing arbitrary elastic anisotropy serves to provide us with insights on what to expect from inverting such data considering the available components, azimuths and aperture. We can only invert for the medium perturbations that the data are sensitive to. Such medium perturbations could correspond to any of the anisotropic parameters or a combination of them, but more importantly, could include many scales, smooth or reflection promoting. Thus, the map of medium parameter perturbation sensitivity as a function of resolution exposes the parameters resolution space. The combination of the maps expose the potential tradeoff at different scales and azimuth. In the maze of interpreting such multiparameter inversion results, resolution and tradeoff insights are crucial.

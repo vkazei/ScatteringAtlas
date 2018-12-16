@@ -48,12 +48,29 @@ For different types of scattering, our further resolution analysis is based on e
 Different scattering modes contribute to different wavenumbers at 
 the same reflection angle and frequency of the image. Therefore, in order to investigate all the
 information available, we need to remap the reflection-based radiation patterns into 
-the spatial wavenumber domain (\figref{K_PP_Full}).
+the spatial wavenumber domain. Equation \eqref{eq:K} governs the mapping procedure and \figref{K_PP_Full} illustrates how it defines the resolution of the different types of body wave scattering.
 
 \tplot{K_PP}{K_PS}{K_SS}{For the same incident angle 
 	and same temporal frequency different modes provide illumination to different 
-	vertical wavenumbers. $P-P$ waves illuminate the lowest wavenumbers (good for FWI), 
-	$S-S$ waves -- the highest wavenumbers (good for migration), and $P-S$ waves -- the intermediate wavenumbers.}
+	vertical wavenumbers. (a) $P-P$ waves illuminate the lowest wavenumbers (good for FWI), 
+	(c) $S-S$ waves -- the highest wavenumbers (good for migration), and (b) $P-S$ waves -- the intermediate wavenumbers.}
 
+We note that the right-hand sides of equations \eqref{eq:UPPInt1}, \eqref{eq:UPSVInt}, and \eqref{eq:USHSHInt} are essentially Fourier transforms of the perturbation. Thus, we can generalize these equations as 
+\beq \label{eq:KvMain}
+\delta U_{WI-WS}(\sv,\gv,\omega) \propto \spv\cdot\gpv \delta \hat{\rho}(\Kv_{WI-WS}(\sv,\gv,\omega)) + \sv\spv : \delta \hat{\cv}(\Kv_{WI-WS}(\sv,\gv,\omega)) :\gv\gpv.
+\eeq
+Equation~\eqref{eq:KvMain} shows that for a given scattering mode, the wavenumber resolved by inversion depends only on the frequency, source and receiver directions. On the other hand, we can infer all possible directions towards the source and receiver for a given wavenumber. Analyzing scattering for these directions leads directly to irresolvable tradeoffs in inversion at a particular length.
 
+%In single mode scattering considerations, the coefficient $\varkappa^{-3}$ can 
+%be dropped \citep{podgornova}. 
+
+%but in order to consider the information 
+%available from several wave types together we need to take it into account:
+%\beq \label{eq:alphaPPPS}
+%|\alpha_{PS}| = \varkappa^{-3}|\alpha_{PP}|
+%\eeq
+%\beq
+%\label{eq:incident}
+%\kv_g = \frac{\omega}{v_{WS}}\gv,  \kv_s = \frac{\omega}{v_{WI}}\sv.
+%\eeq
 

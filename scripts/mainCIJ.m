@@ -46,14 +46,14 @@ parSET = v2struct;
 % % produce patterns for PP scattering
 %
 % % wave type incident wave - scattered wave
-WT = 'PP';
-mkdir(path_pattern_save);
-for i=1:6
-    for j=i:6
-        drawPatternsIJ(WT,i,j,path_pattern_save);
-    end
-end
-
+ WT = 'PP';
+% mkdir(path_pattern_save);
+% for i=1:6
+%     for j=i:6
+%         drawPatternsIJ(WT,i,j,path_pattern_save);
+%     end
+% end
+% 
 
 %% PP waves
 parSET.WTCellArray = {'PP'};
@@ -67,7 +67,7 @@ Cij = zeros(6);
 Cij(5,5) = 1;
 Tsens = simpleRes(Cij, WT, KzMin, KzMax, dKz, phiMax, dPhi, 0);
 imagesc(0:5:180*phiMax/pi,KzMin:dKz:KzMax,Tsens');
-title('Spectral sensitivity to C_5_5');
+%title('Spectral sensitivity to C_5_5');
 set(gca,'xtick',[0 180])
 set(gca,'xticklabel',[0 180])
 set(gca,'FontSize',25)

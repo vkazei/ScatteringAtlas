@@ -1,29 +1,15 @@
+\subsection{Spectral sensitivities}
 
-
-We note that the right-hand sides of equations \eqref{eq:UPPInt1}, \eqref{eq:UPSVInt}, and \eqref{eq:USHSHInt} are essentially Fourier transforms of the perturbation. Thus, we can generalize these equations as 
-\beq \label{eq:KvMain}
-\delta U_{WI-WS}(\sv,\gv,\omega) \propto \spv\cdot\gpv \delta \hat{\rho}(\Kv_{WI-WS}(\sv,\gv,\omega)) + \sv\spv : \delta \hat{\cv}(\Kv_{WI-WS}(\sv,\gv,\omega)) :\gv\gpv.
+Vertical variations are often dominant in subsurface structures. Therefore, we focus on the vertical wavenumbers $\Kv_{WI-WS}$ in the perturbation spectrum. Given the scattering mode, the azimuth, the signal frequency and the wavenumber, \eqrf{K} can be solved for the source and receiver directions $\sv$ and $\gv$, respectively (explicit equations for $\sv$ and $\gv$ are provided in \cref{sec:SnellK}). This means that for a single frequency and single scattering mode a wavenumber defines particular source and receiver directions, that are necessary to illuminate. In other words scattered data can be remapped into the model wavenumber, and azimuth $\phi$ domain:
+\beq \label{eq:DataK}
+\delta U_{WI-WS}(\Kv,\phi,\omega) \equiv \delta U_{WI-WS}(\sv(\Kv,\phi),\gv(\Kv,\phi),\omega) \propto \delta \mv (\Kv_{WI-WS}).
 \eeq
-Equation~\eqref{eq:KvMain} shows that for a given scattering mode, the wavenumber resolved by inversion depends only on the frequency, source and receiver directions. On the other hand, we can infer all possible directions towards the source and receiver for a given wavenumber. Analyzing scattering for these directions leads directly to irresolvable tradeoffs in inversion at a particular length.
+The coefficient of proportionality between model and data in \eqrf{DataK}, which depends on the scattering parameter type, normalized vertical wavenumber and azimuth we call spectral sensitivity. Spectral sensitivity determines how the data represents scattering of a particular parameter and which scales of the parameter are retrievable.
 
-Vertical variations are often dominant in subsurface structures in exploration seismology; therefore, we focus on the vertical wavenumbers $\Kv_{WI-WS}$ in the next section.
+First, we formally define the spectral sensitivities by remapping the reflection-based radiation patterns into the azimuth, vertical wavenumber domain. Then, we demonstrate how to read the spectral sensitivity maps on examples of scattering from a density perturbation, which is an isotropic parameter. As additional example we show scattering form a perturbation in $C_{55}$ which is an orthorhombic parameter.
 
-%In single mode scattering considerations, the coefficient $\varkappa^{-3}$ can 
-%be dropped \citep{podgornova}. 
-
-%but in order to consider the information 
-%available from several wave types together we need to take it into account:
-%\beq \label{eq:alphaPPPS}
-%|\alpha_{PS}| = \varkappa^{-3}|\alpha_{PP}|
-%\eeq
-%\beq
-%\label{eq:incident}
-%\kv_g = \frac{\omega}{v_{WS}}\gv,  \kv_s = \frac{\omega}{v_{WI}}\sv.
-%\eeq
-
-\subsection{Vertical wavenumber sensitivity}
-
-In this section, we construct sensitivities for vertical wavenumbers $\Kv = (0,0,K_z)^T$.
+\subsubsection{Definition}
+We construct sensitivities for vertical wavenumbers $\Kv = (0,0,K_z)^T$.
 %
 For a given frequency $\omega$ and a particular scattering mode, we can find the corresponding source and receiver directions and remap the radiation patterns into the normalized wavenumber-angle domain using 
 
@@ -35,44 +21,22 @@ where
 k_z = \frac{K_z}{k_0},~
 k_{0} = \frac{\omega}{\v_s}. 
 \eeq
-Equation (44) defines the spectral sensitivity for parameter 
+Equation~\eqref{eq:sensDef} defines the spectral sensitivity for parameter 
 $\delta \mv$. We normalize all the wavenumbers, dividing them by $\omega/V_s$. %acknowledging that the sensitivities scale linearly with 
 %frequency in homogeneous backgrounds \citep{kazei2013gp}.
 %We focus on the inversion for vertical wavenumbers $\kv_{PP}=(0,0,k_z)$, or horizontally layered structures, which are dominant in most geological scenarios, including those in the global scale, returning us to the remapped reflection-based radiation patterns in a more convenient representation for resolution analysis domain. 
-These remapped patterns are functions of two variables ($k_z,\phi$) and, therefore, can be easily plotted and examined. 
+These remapped patterns are functions of two variables ($k_z,\phi$) and, therefore, can be easily plotted and examined. We illustrate how the reflection patterns are mapped into the wavenumber domain, starting with the spectral sensitivities for density in \figref{explainK_Full}. 
 
-\subsubsection{Snell's law in wavenumber domain}
-For $S-S$ scattering, the vectors pointing towards the source and the receiver are easily found for a given $k_z\in [0,2]$:
-\beq
-s_1=-g_1=\frac{1}{V_s}\sqrt{1-\frac{k_z^2}{4}}\cos\phi,~ s_2=-g_2=\frac{1}{V_s}\sqrt{1-\frac{k_z^2}{4}}\sin\phi,~
-s_3=g_3=\frac{1}{V_s} k_z/2.  
-\eeq
-For $P-P$ scattering on a horizontal reflector, the vectors pointing towards the source and the receiver are easily found for a given $k_z\in [0,2\varkappa]$:
-\beq
-s_1=-g_1=\frac{1}{V_p} \sqrt{1-\frac{k_z^2}{4 \varkappa^2}}\cos\phi,~ s_2=-g_2=\frac{1}{V_p} \sqrt{1-\frac{k_z^2}{4 \varkappa^2}}\sin\phi,~
-s_3=g_3= \frac{1}{V_p} \frac{k_z}{2 \varkappa}.  
-\eeq
-The reflection-based radiation pattern for $C_{55}$ and $P-P$ scattering is represented in \figref{patterns/C_55/PP_reflZ}.
+\subsubsection{Examples}
+Density is an isotropic parameter; the scattering does not vary with the azimuth in any of the scattering cases. In the $P-P$ scattering mode, the intermediate wavenumbers of density are not illuminated (white line in the middle of \figref{PP_Full/PPdensity_only}), which leads to a poor reconstruction of the density in acoustic FWI \citep{mulder2008}. $P-SV$ waves illuminate the missing intermediate wavenumbers in the density perturbations (\figref{PSV/PSVdensity_only}) and can help reconstruct it. $SH$ waves are difficult to emit in seismic exploration, but they evenly illuminate the full density spectrum (\figref{SHSH/SHSHdensity_only}).
 
-For $P-S$ scattering, Snell's law:
-\beq
-\sv +\gv = \Kv_z
-\eeq
-leads to the following expressions:
-\beq
-s_{xy} = \frac{1}{V_s} \sqrt{2\varkappa^2 k_z^2-\varkappa^4+2\varkappa^2-k_z^4+2k_z^2-1}/(2k_z),
-\\
-s_1=-g_1=s_{xy}\cos(\phi) ,~ s_2=-g_2=s_{xy}\sin(\phi), 
-\\
-s_3=\frac{1}{V_p}(\varkappa^2+k_z^2-1)/(2\varkappa k_z), g_3 = \frac{1}{V_s}(k_z^2-\varkappa^2+1)/(2k_z),
-\eeq
-where $\varkappa = \frac{\v_s}{\v_p}$ is the ratio of the shear and longitudinal velocities. 
-We show all the possible reflection-based radiation patterns for other cases mapped from the $\phi,\theta$ domain into the wavenumber domain ($\phi,k_z$) as spectral sensitivities in order to directly access the resolution of inversion the normalized wavenumber domain.
+\fplot{explainK}{PP_Full/PPdensity_only}{PSV/PSVdensity_only}{SHSH/SHSHdensity_only}{Scattering of different wave types. (a) Wavenumber/resolution limitations for different types of scattering on the same scale. (b),(c),(d) Scattering in the spectral domain for density for $P-P$, $P-SV$, $SH-SH$ waves. $P$ waves cannot resolve intermediate wavenumbers in the spectrum of density -- see the white stripe in the middle of (b); $P-SV$ waves can close this gap (c). Finally, $SH-SH$ waves can in principle illuminate the whole spectrum of density.}
+ 
+\dplot{patterns/C_55/PP_reflZ}{PP_Full/PP_C_55}{(a) The reflection-based radiation pattern for $C_{55}$ and (b) its remapping into the spectral domain. The normalized wavenumber $||\Kv|| \propto \cos \theta_{max}$. In all the patterns, the amplitude sign is indicated by color: red corresponds to a positive reflection coefficient, i.e., no phase flip after scattering; blue shows a negative reflection or scattering coefficient.}
+
+For anisotropic parameters scattering can depend on the azimuth of the incident and scattered wavefields. The reflection-based radiation pattern for $C_{55}$ and $P-P$ scattering is represented in \figref{patterns/C_55/PP_reflZ}.
 %
 This mapping allows us to compare wavenumbers and resolution covered by different wave types.
-
 %
 In the next section, we analyze the scattering of all the elastic 
 constants and find the null-space of the inversion for each scattering mode.
- 
-\dplot{patterns/C_55/PP_reflZ}{PP_Full/PP_C_55}{(a) The reflection-based radiation pattern for $C_{55}$ and (b) its remapping into the spectral domain. The normalized wavenumber $||\Kv|| \propto \cos \theta_{max}$. In all the patterns, the amplitude sign is indicated by color: red corresponds to a positive reflection coefficient, i.e., no phase shift after scattering; blue shows a negative reflection or scattering coefficient.}

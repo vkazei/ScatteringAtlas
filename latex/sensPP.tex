@@ -6,11 +6,10 @@ modeling \citep{alkhalifah2000,wu2017}, though correct inversion of the amplitud
 In our previous work, we analyzed the scattering of $P$ wave--scattered data with respect to the inversion opportunities \citep{kazei2018}; therefore, here we cover the decoupling of parameters in the case of perfect illumination only.
 
 \ddplot{PP_Full/PPCij}{PP_Full/PPnPar0}{Spectral sensitivities to vertical 
-wavenumbers for $P-P$ scattering on various $C_{ij}$ perturbations. (a) 
-Sensitivity to all monoclinic parameters is non-zero when we start from isotropic 
+wavenumbers for $P-P$ scattering on various $C_{ij}$ perturbations. Perturbations that scatter in a very similar manner are enclosed by frames of the same color. (a) Sensitivity to all $C_{ij}$ parameters and density perturbed independently. High wavenumbers for density resemble those for 
+$C_{33}$, these are the only parameters scattering independently of the azimuth in the $C_{ij},\rho$ parameterization. Sensitivity to all monoclinic parameters is non-zero when we start from isotropic 
 background. Yet, $C_{13}$ is very similar to $C_{55}$, $C_{12}$ to $C_{66}$, and 
-$C_{23}$ to $C_{44}$. High wavenumbers for density resemble those for 
-$C_{33}$. Scattering by $C_{45}$ is similar to that by $C_{35}$. (b) In the 
+$C_{23}$ to $C_{44}$.  Scattering by $C_{45}$ is similar to that by $C_{35}$. (b) In the 
 hierarchical parameterization, $V_{s}$ is coupled to $\eta_1$, and $\eta_d$ is coupled to $\gamma_d$, finally, 
 $\rho$ is very similar to $\epsilon_1$. The Poisson ratio is assumed to be 0.25 
 ($V_p/V_s = \sqrt{3}$).}
@@ -77,7 +76,7 @@ We also found \citep{kazei2018} a particular combination of the stiffness matrix
 Thus, density can be effectively represented by anisotropic parameters in the first order of scattering. Therefore, it is impossible to reconstruct density simultaneously with all the VTI parameters when starting from isotropic background.
 %
 %\plot{PP_SVD_All_JW}{width=0.3\columnwidth}{Same as \figref{PP_Cij_SVD_All} but for parameterization from \citep{juwon2016}}
-\tplot{PP_Full/TotalSingVal}{PP_Full/TotalSingVec1}{PP_Full/TotalSingVec0}{(a) Singular values and (b) vectors of the matrix $\Amat$ for $P-P$ scattering and $C_{ij},\rho$ parameterization. In Figure (a) the red line represents singular values in the standard $C_{ij},\rho$ parameterization and the blue line represents the hierarchical parameterization. Perfect illumination -- maximum opening angle is equal to $\pi$, all azimuths are available. There are \emph{six} non-zero singular values. (c) Singular vectors in the hierarchical parameterization.}
+\tplot{PP_Full/TotalSingVal}{PP_Full/TotalSingVec1}{PP_Full/TotalSingVec0}{(a) Singular values and (b) vectors of the matrix $\Amat$ for $P-P$ scattering and $C_{ij},\rho$ parameterization. In Figure (a) the red line represents singular values in the standard $C_{ij},\rho$ parameterization and the blue line represents the hierarchical parameterization. Perfect illumination -- maximum opening angle is equal to $\pi$, all azimuths are available. There are \emph{six} non-zero singular values. (c) Singular vectors in the hierarchical parameterization. Singular vectors corresponding to zero singular values form the null space. They are marked by vertical dashed lines. These combinations of parameter perturbations don't scatter $P-P$ waves.}
 %
 %Identifiable combinations of parameters can be divided into two groups -- the 
 %first three singular vectors show slightly higher sensitivity than the other 

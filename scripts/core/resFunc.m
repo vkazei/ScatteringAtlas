@@ -228,7 +228,37 @@ for cellWT = WTCellArray
     print_N_note([path_pattern_save,WT,'density'])
     
     
-%     %% SVD analysis for "time domain"
+ %% density picture separate
+    figure();
+    iFig = iFig+1;
+    Cij = zeros(6);
+    % setting denFlag to 1
+    Tsens = simpleRes(Cij, WT, KzMin, KzMax, dKz, phiMax, dPhi, 1);
+    imagesc(0:5:180*phiMax/pi,KzMin:dKz:KzMax,Tsens');
+    %title Density
+    set(gca,'xtick',[0 180])
+    set(gca,'xticklabel',[0 180])
+    set(gca,'ytick',[0 1-kappa 2*kappa 1+kappa 2])
+    set(gca,'yticklabel',{'0', '\omega/V_s - \omega/V_p', '2\omega/V_p', ...
+        '\omega/V_p + \omega/V_s', '2\omega/V_s'})
+    %set(gca,'YAxisLocation', 'right')
+    set(gca,'FontSize',20)
+    set(gca,'TickLength',[0.1 0.1])
+    
+    ylabel('K_z');
+    xlabel('Azimuth(^o)');
+    caxis ([-1 1])
+    colormap(mycmap);
+    %colorbar southoutside
+    axis xy
+    
+    fig2 = gcf;
+    fig2.PaperPosition = [0 0 6 4];
+    colorbar
+    print_N_note([path_pattern_save,WT,'density_only'])
+    
+    
+%%     %% SVD analysis"
 %           
 %     fig2=figure(iFig);
     superSens.(WT) = reshape(TsensAll.(WT),tNumPar,nPhi*nKz);
@@ -330,7 +360,7 @@ for SVDthresh = SVDthreshArr
     colorbar
     
     fig2 = gcf;
-    fig2.PaperPosition = [0 0 10 10];
+    fig2.PaperPosition = [0 0 5 5];
     print(strcat(path_pattern_save,'resMatrix',num2str(SVDthresh*100),'Total',num2str(CijFlag)),'-depsc2','-r0');
     
 end
@@ -345,11 +375,12 @@ STdiag = diag((STotalPar(1:min(tNumPar,nKz*nPhi),1:min(tNumPar,nKz*nPhi))/...
 
 semilogy(STdiag,'b','LineWidth',4);
 %caxis ([-3 0])
-title(strcat('Singular values'));
+%title(strcat('Singular values'));
 %title(strcat('Singular values ',WT,' scattering'));
 set(gca,'FontSize',20)
 axis tight
 axis([1 tNumPar 10^-3 1])
+set(gca,'XTick',1:10)
 grid on
 hold on
 
@@ -363,7 +394,7 @@ else
 end
 
 fig2 = gcf;
-fig2.PaperPosition = [0 0 10 10];
+fig2.PaperPosition = [0 0 7 7];
 print_N_note([path_pattern_save,'TotalSingVal']);
 
 %%
@@ -372,7 +403,7 @@ iFig = iFig+1;
 
 imagesc(VTotalPar);
 caxis ([-1 1])
-title(strcat('Singular vectors'));
+%title(strcat('Singular vectors'));
 set(gca,'YTickLabel',parNameArray)
 colormap(mycmap);
 colorbar
@@ -380,7 +411,7 @@ set(gca,'YTick',1:10)
 set(gca,'XTick',1:10)
 if CijFlag==1
     set(gca,'YTickLabel',parNameArray)
-    title(strcat('C_{ij}, \rho param., singular vectors'));
+    %title(strcat('C_{ij}, \rho param., singular vectors'));
 end
 set(gca,'FontSize',20)
 axis equal
@@ -388,8 +419,15 @@ axis tight
 grid on
 colorbar
 
+for iLine = 1:tNumPar
+    if STdiag(iLine) < 10^-10
+        line([iLine iLine], [0.5 tNumPar+0.5], ...
+            'Color', 'black', 'LineWidth', 3, 'LineStyle','- -');
+    end
+end
+
 fig2 = gcf;
-fig2.PaperPosition = [0 0 10 10];
+fig2.PaperPosition = [0 0 7 7];
 
 print_N_note([path_pattern_save,'TotalSingVec',num2str(CijFlag)]);
 
