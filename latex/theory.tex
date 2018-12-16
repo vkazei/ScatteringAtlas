@@ -1,17 +1,17 @@
 \subsection{Spectral sensitivities}
 
-Vertical variations are often dominant in subsurface structures. Therefore, we focus on the vertical wavenumbers $\Kv_{WI-WS}$ in the perturbation spectrum. Given the scattering mode, the azimuth, the signal frequency and the wavenumber, \eqrf{K} can be solved for the source and receiver directions $\sv$ and $\gv$, respectively (explicit equations for $\sv$ and $\gv$ are provided in \cref{sec:SnellK}). This means that for a single frequency and single scattering mode a wavenumber defines particular source and receiver directions, that are necessary to illuminate. In other words scattered data can be remapped into the model wavenumber, and azimuth $\phi$ domain:
+Vertical variations are often dominant in subsurface structures. Therefore, we focus on the vertical wavenumbers $\Kv_{WI-WS}$ in the perturbation spectrum. Given the scattering mode, azimuth, signal frequency, and wavenumber, \eqrf{K} can be solved for the source and receiver directions $\sv$ and $\gv$, respectively (explicit equations for $\sv$ and $\gv$ are provided in \cref{sec:SnellK}). This means that the wavenumber defines the particular source and receiver directions, which are necessary to illuminate, for a single frequency and single scattering mode. In other words, the scattered data can be remapped into the model wavenumber and the azimuth $\phi$ domain:
 \beq \label{eq:DataK}
 \delta U_{WI-WS}(\Kv,\phi,\omega) \equiv \delta U_{WI-WS}(\sv(\Kv,\phi),\gv(\Kv,\phi),\omega) \propto \delta \mv (\Kv_{WI-WS}).
 \eeq
-The coefficient of proportionality between model and data in \eqrf{DataK}, which depends on the scattering parameter type, normalized vertical wavenumber and azimuth we call spectral sensitivity. Spectral sensitivity determines how the data represents scattering of a particular parameter and which scales of the parameter are retrievable.
+We call the coefficient of proportionality between the model and data shown in \eqrf{DataK} the spectral sensitivity. The spectral sensitivity depends on the scattering parameter type, the normalized vertical wavenumber, and the azimuth, and determines both how the data represents the scattering from a particular parameter and which scales of the parameter are retrievable.
 
-First, we formally define the spectral sensitivities by remapping the reflection-based radiation patterns into the azimuth, vertical wavenumber domain. Then, we demonstrate how to read the spectral sensitivity maps on examples of scattering from a density perturbation, which is an isotropic parameter. As additional example we show scattering form a perturbation in $C_{55}$ which is an orthorhombic parameter.
+We formally define the spectral sensitivities by remapping the reflection-based radiation patterns into the azimuth-wavenumber domain. Then, we demonstrate how to read the spectral sensitivity maps on examples of scattering from a density perturbation, which is an isotropic parameter. As an additional example, we show scattering from a perturbation in $C_{55}$, which is an orthorhombic parameter.
 
 \subsubsection{Definition}
-We construct sensitivities for vertical wavenumbers $\Kv = (0,0,K_z)^T$.
+We construct the sensitivities for the vertical wavenumbers $\Kv = (0,0,K_z)^T$.
 %
-For a given frequency $\omega$ and a particular scattering mode, we can find the corresponding source and receiver directions and remap the radiation patterns into the normalized wavenumber-angle domain using 
+For a given frequency $\omega$ and a particular scattering mode, we find the corresponding source and receiver directions and remap the radiation patterns into the normalized wavenumber-angle domain using 
 
 \beq \label{eq:sensDef}
 \Sp_{WI-WS,\delta \mv} (k_z, \varphi) \equiv \Dp_{\delta \mv, WI-WS} (\sv(k_z,\varphi,WI-WS), \gv(k_z,\varphi,WI-WS)),~
