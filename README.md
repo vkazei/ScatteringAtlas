@@ -18,12 +18,20 @@ shows scattering of ```WT``` type (e.g. PP, PSV, SVSH etc.) on perturbation of C
 ```
 drawPattern(WT,Cij,denFlag,patternType)
 ```
-draws the radiation pattern of given type in 3D view for preliminarily assembled Cij matrix.
+draws the radiation pattern of given type in 3D view (parmetrized by the vector g pointing towards geophone) for preliminarily assembled Cij matrix. Figure 3 is created with these finctions:
 ![](latex/Fig/figure3.png)
 ```
 simpleRes(Cij, WT, KzMin, KzMax, dKz, phiMax, dPhi, denFlag)
 ```
-computes the resolution in wavenumber azimuth domain.
+computes the resolution in wavenumber(K<sub>z</sub>)-azimuth domain (Figure 7).
+![](latex/Fig/figure7.png)
+```
+resFunc(parSET)
+```
+quantifies resolution for all elastic parameters 
+![](latex/Fig/figure9.png)
+and finds the null-space for given scattering type
+![](latex/Fig/figure10.png)
 
 ### Main paper file
 ```
