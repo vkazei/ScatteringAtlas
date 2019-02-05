@@ -43,17 +43,17 @@ parSET = v2struct;
 
 
 %% radiation patterns in 3D view
-% % produce patterns for PP scattering
-%
-% % wave type incident wave - scattered wave
- WT = 'PP';
-% mkdir(path_pattern_save);
-% for i=1:6
-%     for j=i:6
-%         drawPatternsIJ(WT,i,j,path_pattern_save);
-%     end
-% end
-% 
+% produce patterns for PP scattering
+
+% wave type incident wave - scattered wave
+WT = 'PP';
+mkdir(path_pattern_save);
+for i=1:6
+    for j=i:6
+        drawPatternsIJ(WT,i,j,path_pattern_save);
+    end
+end
+
 
 %% PP waves
 parSET.WTCellArray = {'PP'};
